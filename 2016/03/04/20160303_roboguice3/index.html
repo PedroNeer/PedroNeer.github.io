@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Hexo</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <!--在这里倒入jquery 方便处理部分页面的jquery-->
+  <script src="http://lib.sinaapp.com/js/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+	
+  <header class="site-header site-color" id="site-header-id">
+
+  <div class="container">
+      <h1><a href="/" title="Hexo"><span class="octicon octicon-mark-github"></span> Hexo</a></h1>
+      <nav class="site-header-nav" role="navigation">
+        
+              
+              <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="Home">Home</a>
+        
+              
+              <a href="/subentry/Life/" target="target" class=" site-header-nav-item hvr-underline-from-center" title="Life">Life</a>
+        
+              
+              <a href="/open-source/"  class=" site-header-nav-item hvr-underline-from-center" title="Open-Source">Open-Source</a>
+        
+              
+              <a href="/blog/"  class=" site-header-nav-item hvr-underline-from-center" title="Blog">Blog</a>
+        
+              
+              <a href="/guestbook/"  class=" site-header-nav-item hvr-underline-from-center" title="Guestbook">Guestbook</a>
+        
+      </nav>
+  </div>
+</header>
+
+	
+    <section class="collection-head collection-head-scrolled geopattern" data-pattern-id="RoboGuice 3.0 （三）总结篇" >
+
+    <div class="container">
+        <div class="collection-title">
+            <h1 class="collection-header">RoboGuice 3.0 （三）总结篇</h1>
+            <div class="collection-info">
+                <span class="meta-info">
+                    
+                        <span class="octicon octicon-calendar"></span>
+                        <time datetime="2016-03-03T18:12:20.000Z" itemprop="datePublished">2016-03-04</time>
+                    
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+	
+
+    <section class="container content">
+
+    <div class="columns">
+        <div class="column three-fourths" >
+            <article class="article-content article-entry">
+                <p>经过前两篇的介绍，我们了解了如何使用RoboGuice方便的为我们注入需要的对象，这篇将着重说明原理。</p>
+<p>####一.Guice与RoboGuice</p>
+<p>Guise是Google开发的一个轻量级的依赖注入框架，主要针对Java使用的。</p>
+<p>RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的依赖注入框架。</p>
+<p>上两篇中所提到的POJO注入，说白了就是对象注入，大部分方法都是Guice框架中的。RoboGuice主要在视图注入及Android个性化的注入上下功夫。</p>
+<p>####二.RoboGuice注入对象</p>
+<p>就算没用过RoboGuice，但是大家也都听过，RoboGuice是通过反射来实现注入的。</p>
+<p>为了了解实现的原理，我们先看下RoboActivity的代码。</p>
+<p>其中eventManager初始化方式使用的就是之前提过的RoboGuice.getInjector()，其内部提供了各种事件的注册，反注册，分发等等功能。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RoboActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">RoboContext</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> EventManager eventManager;</span><br><span class="line">    <span class="keyword">protected</span> HashMap&lt;Key&lt;?&gt;,Object&gt; scopedObjects = <span class="keyword">new</span> HashMap&lt;Key&lt;?&gt;, Object&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span> ContentViewListener ignored; <span class="comment">// BUG find a better place to put this</span></span><br><span class="line">    <span class="keyword">private</span> Stopwatch stopwatch;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        stopwatch = <span class="keyword">new</span> Stopwatch();</span><br><span class="line">        <span class="keyword">final</span> RoboInjector injector = RoboGuice.getInjector(<span class="keyword">this</span>);</span><br><span class="line">        stopwatch.resetAndLog(<span class="string">"RoboActivity creation of injector"</span>);</span><br><span class="line">        eventManager = injector.getInstance(EventManager.class);</span><br><span class="line">        stopwatch.resetAndLog(<span class="string">"RoboActivity creation of eventmanager"</span>);</span><br><span class="line">        injector.injectMembersWithoutViews(<span class="keyword">this</span>);</span><br><span class="line">        stopwatch.resetAndLog(<span class="string">"RoboActivity inject members without views"</span>);</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        stopwatch.resetAndLog(<span class="string">"RoboActivity super onCreate"</span>);</span><br><span class="line">        eventManager.fire(<span class="keyword">new</span> OnCreateEvent&lt;Activity&gt;(<span class="keyword">this</span>,savedInstanceState));</span><br><span class="line">        stopwatch.resetAndLog(<span class="string">"RoboActivity fire event"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其次注意到被注入的ContentViewListener，这就是为了实现在Activity上的ContentView的注解，这里的方法是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContextSingleton</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContentViewListener</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Inject</span> <span class="keyword">protected</span> Activity activity;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">optionallySetContentView</span><span class="params">( @Observes OnCreateEvent&lt;?&gt; ignored )</span> </span>&#123;</span><br><span class="line">        Class&lt;?&gt; c = activity.getClass();</span><br><span class="line">        <span class="keyword">while</span>( c != Context.class ) &#123;</span><br><span class="line">            <span class="keyword">final</span> ContentView annotation = c.getAnnotation(ContentView.class);</span><br><span class="line">            <span class="keyword">if</span>( annotation!=<span class="keyword">null</span> ) &#123;</span><br><span class="line">                activity.setContentView(annotation.value());</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            c = c.getSuperclass();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里观察的是OnCreate的事件，事件的分发代码在OnCreate方法中，实现了setContentView的方法。</p>
+<p>onCreate方法简化后如下。可以发现inject对象的时机是在super的onCreate之前的，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> RoboInjector injector = RoboGuice.getInjector(<span class="keyword">this</span>);</span><br><span class="line">        eventManager = injector.getInstance(EventManager.class);</span><br><span class="line">        injector.injectMembersWithoutViews(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        eventManager.fire(<span class="keyword">new</span> OnCreateEvent&lt;Activity&gt;(<span class="keyword">this</span>,savedInstanceState));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>RoboInjector其实是RoboGuice内部的一个Guice Injector，大部分注入工作交给了Guice。</p>
+<p>反射注入这一块就不深入讨论了，下面贴出了Guice的部分代码。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">computeInjectableMembers</span><span class="params">(TypeLiteral&lt;?&gt; type, <span class="keyword">boolean</span> statics, Errors errors, InjectionPoint.InjectableMembers injectableMembers, InjectionPoint.OverrideIndex overrideIndex, HierarchyTraversalFilter filter)</span> </span>&#123;</span><br><span class="line">    Class rawType = type.getRawType();</span><br><span class="line">    <span class="keyword">if</span>(isWorthScanning(filter, rawType)) &#123;</span><br><span class="line">        Class parentRawType = rawType.getSuperclass();</span><br><span class="line">        <span class="keyword">if</span>(isWorthScanning(filter, parentRawType)) &#123;</span><br><span class="line">            computeInjectableMembers(type.getSupertype(parentRawType), statics, errors, injectableMembers, overrideIndex, filter);</span><br><span class="line">            overrideIndex.position = InjectionPoint.Position.MIDDLE;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            overrideIndex.position = InjectionPoint.Position.TOP;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Set allFields = filter.getAllFields(Inject.class.getName(), rawType);</span><br><span class="line">        <span class="keyword">if</span>(allFields != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Iterator allMethods = allFields.iterator();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(allMethods.hasNext()) &#123;</span><br><span class="line">                Field i$ = (Field)allMethods.next();</span><br><span class="line">                <span class="keyword">if</span>(Modifier.isStatic(i$.getModifiers()) == statics) &#123;</span><br><span class="line">                    Annotation method = getAtInject(i$);</span><br><span class="line">                    <span class="keyword">if</span>(method != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        InjectionPoint.InjectableField atInject = <span class="keyword">new</span> InjectionPoint.InjectableField(type, i$, method);</span><br><span class="line">                        <span class="keyword">if</span>(atInject.jsr330 &amp;&amp; Modifier.isFinal(i$.getModifiers())) &#123;</span><br><span class="line">                            errors.cannotInjectFinalField(i$);</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        injectableMembers.add(atInject);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Set allMethods1 = filter.getAllMethods(Inject.class.getName(), rawType);</span><br><span class="line">        <span class="keyword">if</span>(allMethods1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Iterator i$<span class="number">1</span> = allMethods1.iterator();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">                    <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">                        Method method1;</span><br><span class="line">                        do &#123;</span><br><span class="line">                            <span class="keyword">if</span>(!i$<span class="number">1</span>.hasNext()) &#123;</span><br><span class="line">                                <span class="keyword">return</span>;</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            method1 = (Method)i$<span class="number">1</span>.next();</span><br><span class="line">                        &#125; <span class="keyword">while</span>(!isEligibleForInjection(method1, statics));</span><br><span class="line"></span><br><span class="line">                        Annotation atInject1 = getAtInject(method1);</span><br><span class="line">                        <span class="keyword">if</span>(atInject1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            InjectionPoint.InjectableMethod removed2 = <span class="keyword">new</span> InjectionPoint.InjectableMethod(type, method1, atInject1);</span><br><span class="line">                            <span class="keyword">if</span>(!checkForMisplacedBindingAnnotations(method1, errors) &amp;&amp; isValidMethod(removed2, errors)) &#123;</span><br><span class="line">                                <span class="keyword">if</span>(statics) &#123;</span><br><span class="line">                                    injectableMembers.add(removed2);</span><br><span class="line">                                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                    overrideIndex.removeIfOverriddenBy(method1, <span class="keyword">true</span>, removed2);</span><br><span class="line">                                    overrideIndex.add(removed2);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                <span class="keyword">boolean</span> removed1 = overrideIndex.removeIfOverriddenBy(method1, <span class="keyword">false</span>, removed2);</span><br><span class="line">                                <span class="keyword">if</span>(removed1) &#123;</span><br><span class="line">                                    logger.log(Level.WARNING, <span class="string">"Method: &#123;0&#125; is not a valid injectable method (because it either has misplaced binding annotations or specifies type parameters) but is overriding a method that is valid. Because it is not valid, the method will not be injected. To fix this, make the method a valid injectable method."</span>, method1);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="keyword">boolean</span> removed = overrideIndex.removeIfOverriddenBy(method1, <span class="keyword">false</span>, (InjectionPoint.InjectableMethod)<span class="keyword">null</span>);</span><br><span class="line">                            <span class="keyword">if</span>(removed) &#123;</span><br><span class="line">                                logger.log(Level.WARNING, <span class="string">"Method: &#123;0&#125; is not annotated with @Inject but is overriding a method that is annotated with @javax.inject.Inject.  Because it is not annotated with @Inject, the method will not be injected. To fix this, annotate the method with @Inject."</span>, method1);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>####三.总结</p>
+<p>这三篇过来，依赖注入给我们带来了什么？</p>
+<p>解耦。</p>
+<p>当我们在一个对象中，不需要关心它所依赖的成员如何初始化，只关心用来使用或获取属性，依赖注入为我们实现了解耦。</p>
+<p>再就是RoboGuice的贴心，将Android基本组件考虑在内，为我们实现了很多注入，减少了我们调用系统服务或组件的代码，再就是RoboGuice考虑到了Android生命周期的特殊问题，将注入的成员对象生命周期保持与Context生命周期一致。</p>
+<p>再说说反射，尽管RoboGuice强调，使用roboblender会优化很大一部分注解性能，但是反射对于移动端设备参差不齐的配置，还是让人有一点点担心，如果项目足够大，且使用了大量的注解及注入，那么性能一定是有影响的。</p>
+<p>最后，RoboGuice确实是一个值得使用的框架，使用简单、上手较快、能实现模块解耦。光凭这几点优点</p>
+
+            </article>
+            
+                <div class="share">
+                    <!--开启分享-->
+<div class="share-component"></div>
+
+<script src="/js/share.min.js"></script>
+                </div>    
+            
+            
+                <div class="comment">
+                    
+<div class="ds-thread" data-thread-key="20160303_roboguice3" data-title="RoboGuice 3.0 （三）总结篇" data-url="http://yoursite.com/2016/03/04/20160303_roboguice3/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"yumemor"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+                </div>
+            
+        </div>
+        <div class="column one-fourth">
+            
+                <h3>Post Directory</h3>
+
+<div id="post-directory-module">
+	<section class="post-directory">
+		<p><strong class="toc-title">文章目录</strong></p>
+		
+	</section>
+</div>
+            
+        </div>
+       
+    </div>
+</section>
+
+<footer class="container">
+    <div class="site-footer" role="contentinfo">
+        <div class="copyright left mobile-block">
+                © 2016
+                <span title="yumemor">yumemor</span>
+                <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+        </div>
+
+        <ul class="site-footer-links right mobile-hidden">
+            <li>
+                <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+            </li>
+        </ul>
+
+        <a href="https://github.com/yumemor/yumemor.github.io" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
+
+        <ul class="site-footer-links mobile-hidden">
+            
+             
+              
+              <li>
+                <a href="/"  title="Home">Home</a>
+              </li>
+            
+              
+              <li>
+                <a href="/subentry/Life/" target="target" title="Life">Life</a>
+              </li>
+            
+              
+              <li>
+                <a href="/open-source/"  title="Open-Source">Open-Source</a>
+              </li>
+            
+              
+              <li>
+                <a href="/blog/"  title="Blog">Blog</a>
+              </li>
+            
+              
+              <li>
+                <a href="/guestbook/"  title="Guestbook">Guestbook</a>
+              </li>
+            
+
+        </ul>
+
+    </div>
+</footer>
+
+		
+		<script src="/js/typer.js"></script>
+
+		<script src="/js/geopattern.js"></script>
+
+		<script src="/js/index.js"></script>
+
+		 <script src="/js/popular_repo.js"></script> 
+
+	</body>
+</html>
