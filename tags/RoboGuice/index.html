@@ -1,490 +1,371 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<html>
 <head>
   <meta charset="utf-8">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>Hexo</title>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Tag: RoboGuice | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/tags/RoboGuice/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
   <link rel="stylesheet" href="/css/style.css">
-  <!--在这里倒入jquery 方便处理部分页面的jquery-->
-  <script src="http://lib.sinaapp.com/js/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 </head>
-<body class="home">
-	
-  <header class="site-header site-color" id="site-header-id">
 
-  <div class="container">
-      <h1><a href="/" title="Hexo"><span class="octicon octicon-mark-github"></span> Hexo</a></h1>
-      <nav class="site-header-nav" role="navigation">
-        
-              
-              <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="Home">Home</a>
-        
-              
-              <a href="/subentry/Life/" target="target" class=" site-header-nav-item hvr-underline-from-center" title="Life">Life</a>
-        
-              
-              <a href="/open-source/"  class=" site-header-nav-item hvr-underline-from-center" title="Open-Source">Open-Source</a>
-        
-              
-              <a href="/blog/"  class=" site-header-nav-item hvr-underline-from-center" title="Blog">Blog</a>
-        
-              
-              <a href="/guestbook/"  class=" site-header-nav-item hvr-underline-from-center" title="Guestbook">Guestbook</a>
-        
-      </nav>
-  </div>
-</header>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="null" class="js-avatar">
+			
+		</a>
 
-	
-    <section class="banner">
-
-    <div class="collection-head">
-        <div class="container">
-            <div class="collection-title">
-                <h1 class="collection-header" id="site-description">
-                    
-                </h1>
-                <script type="text/javascript">
-                    $(function(){
-                        
-                    });
-                </script>
-                <div class="collection-info">
-                    
-                    
-                        <span class="meta-info">
-                            
-                                <span class="octicon octicon-location">
-                                   
-                                        ChengDu, China
-                                    
-                                </span>
-                                
-                            
-                        </span>
-                    
-                        <span class="meta-info">
-                            
-                                <span class="octicon octicon-mark-github">
-                                   
-                                </span>
-                                
-                                    <a href="http://github.com/yumemor" target="_blank">yumemor</a>
-                                
-                            
-                        </span>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-	
-    <section class="container content">
-
-    <div class="columns">
-        <div class="column two-thirds">
-            
-                  <article id="post-20160303_roboguice3" class="repo-list">
-    <div class="repo-list-item" >
-      <h3 class="repo-list-name" itemprop="name">
-        
-  
-      <a class="article-title" href="/2016/03/04/20160303_roboguice3/">RoboGuice 3.0 （三）总结篇</a>
-  
-
-      </h3>
-      <div class="repo-list-description article-entry">
-        
-          <p>经过前两篇的介绍，我们了解了如何使用RoboGuice方便的为我们注入需要的对象，这篇将着重说明原理。</p>
-<p>####一.Guice与RoboGuice</p>
-<p>Guise是Google开发的一个轻量级的依赖注入框架，主要针对Java使用的。</p>
-<p>RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的依赖注入框架。</p>
-<p>上两篇中所提到的POJO注入，说白了就是对象注入，大部分方法都是Guice框架中的。RoboGuice主要在视图注入及Android个性化的注入上下功夫。</p>
-<p>####二.RoboGuice注入对象</p>
-<p>就算没用过RoboGuice，但是大家也都听过，RoboGuice是通过反射来实现注入的。</p>
-<p>为了了解实现的原理，我们先看下RoboActivity的代码。</p>
-<p>其中eventManager初始化方式使用的就是之前提过的RoboGuice.getInjector()，其内部提供了各种事件的注册，反注册，分发等等功能。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RoboActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> <span class="keyword">implements</span> <span class="title">RoboContext</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> EventManager eventManager;</span><br><span class="line">    <span class="keyword">protected</span> HashMap&lt;Key&lt;?&gt;,Object&gt; scopedObjects = <span class="keyword">new</span> HashMap&lt;Key&lt;?&gt;, Object&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span> ContentViewListener ignored; <span class="comment">// BUG find a better place to put this</span></span><br><span class="line">    <span class="keyword">private</span> Stopwatch stopwatch;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        stopwatch = <span class="keyword">new</span> Stopwatch();</span><br><span class="line">        <span class="keyword">final</span> RoboInjector injector = RoboGuice.getInjector(<span class="keyword">this</span>);</span><br><span class="line">        stopwatch.resetAndLog(<span class="string">"RoboActivity creation of injector"</span>);</span><br><span class="line">        eventManager = injector.getInstance(EventManager.class);</span><br><span class="line">        stopwatch.resetAndLog(<span class="string">"RoboActivity creation of eventmanager"</span>);</span><br><span class="line">        injector.injectMembersWithoutViews(<span class="keyword">this</span>);</span><br><span class="line">        stopwatch.resetAndLog(<span class="string">"RoboActivity inject members without views"</span>);</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        stopwatch.resetAndLog(<span class="string">"RoboActivity super onCreate"</span>);</span><br><span class="line">        eventManager.fire(<span class="keyword">new</span> OnCreateEvent&lt;Activity&gt;(<span class="keyword">this</span>,savedInstanceState));</span><br><span class="line">        stopwatch.resetAndLog(<span class="string">"RoboActivity fire event"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其次注意到被注入的ContentViewListener，这就是为了实现在Activity上的ContentView的注解，这里的方法是</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContextSingleton</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ContentViewListener</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Inject</span> <span class="keyword">protected</span> Activity activity;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">optionallySetContentView</span><span class="params">( @Observes OnCreateEvent&lt;?&gt; ignored )</span> </span>&#123;</span><br><span class="line">        Class&lt;?&gt; c = activity.getClass();</span><br><span class="line">        <span class="keyword">while</span>( c != Context.class ) &#123;</span><br><span class="line">            <span class="keyword">final</span> ContentView annotation = c.getAnnotation(ContentView.class);</span><br><span class="line">            <span class="keyword">if</span>( annotation!=<span class="keyword">null</span> ) &#123;</span><br><span class="line">                activity.setContentView(annotation.value());</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            c = c.getSuperclass();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里观察的是OnCreate的事件，事件的分发代码在OnCreate方法中，实现了setContentView的方法。</p>
-<p>onCreate方法简化后如下。可以发现inject对象的时机是在super的onCreate之前的，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> RoboInjector injector = RoboGuice.getInjector(<span class="keyword">this</span>);</span><br><span class="line">        eventManager = injector.getInstance(EventManager.class);</span><br><span class="line">        injector.injectMembersWithoutViews(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        eventManager.fire(<span class="keyword">new</span> OnCreateEvent&lt;Activity&gt;(<span class="keyword">this</span>,savedInstanceState));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>RoboInjector其实是RoboGuice内部的一个Guice Injector，大部分注入工作交给了Guice。</p>
-<p>反射注入这一块就不深入讨论了，下面贴出了Guice的部分代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">computeInjectableMembers</span><span class="params">(TypeLiteral&lt;?&gt; type, <span class="keyword">boolean</span> statics, Errors errors, InjectionPoint.InjectableMembers injectableMembers, InjectionPoint.OverrideIndex overrideIndex, HierarchyTraversalFilter filter)</span> </span>&#123;</span><br><span class="line">    Class rawType = type.getRawType();</span><br><span class="line">    <span class="keyword">if</span>(isWorthScanning(filter, rawType)) &#123;</span><br><span class="line">        Class parentRawType = rawType.getSuperclass();</span><br><span class="line">        <span class="keyword">if</span>(isWorthScanning(filter, parentRawType)) &#123;</span><br><span class="line">            computeInjectableMembers(type.getSupertype(parentRawType), statics, errors, injectableMembers, overrideIndex, filter);</span><br><span class="line">            overrideIndex.position = InjectionPoint.Position.MIDDLE;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            overrideIndex.position = InjectionPoint.Position.TOP;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Set allFields = filter.getAllFields(Inject.class.getName(), rawType);</span><br><span class="line">        <span class="keyword">if</span>(allFields != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Iterator allMethods = allFields.iterator();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(allMethods.hasNext()) &#123;</span><br><span class="line">                Field i$ = (Field)allMethods.next();</span><br><span class="line">                <span class="keyword">if</span>(Modifier.isStatic(i$.getModifiers()) == statics) &#123;</span><br><span class="line">                    Annotation method = getAtInject(i$);</span><br><span class="line">                    <span class="keyword">if</span>(method != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        InjectionPoint.InjectableField atInject = <span class="keyword">new</span> InjectionPoint.InjectableField(type, i$, method);</span><br><span class="line">                        <span class="keyword">if</span>(atInject.jsr330 &amp;&amp; Modifier.isFinal(i$.getModifiers())) &#123;</span><br><span class="line">                            errors.cannotInjectFinalField(i$);</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        injectableMembers.add(atInject);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Set allMethods1 = filter.getAllMethods(Inject.class.getName(), rawType);</span><br><span class="line">        <span class="keyword">if</span>(allMethods1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Iterator i$<span class="number">1</span> = allMethods1.iterator();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">                    <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">                        Method method1;</span><br><span class="line">                        do &#123;</span><br><span class="line">                            <span class="keyword">if</span>(!i$<span class="number">1</span>.hasNext()) &#123;</span><br><span class="line">                                <span class="keyword">return</span>;</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            method1 = (Method)i$<span class="number">1</span>.next();</span><br><span class="line">                        &#125; <span class="keyword">while</span>(!isEligibleForInjection(method1, statics));</span><br><span class="line"></span><br><span class="line">                        Annotation atInject1 = getAtInject(method1);</span><br><span class="line">                        <span class="keyword">if</span>(atInject1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            InjectionPoint.InjectableMethod removed2 = <span class="keyword">new</span> InjectionPoint.InjectableMethod(type, method1, atInject1);</span><br><span class="line">                            <span class="keyword">if</span>(!checkForMisplacedBindingAnnotations(method1, errors) &amp;&amp; isValidMethod(removed2, errors)) &#123;</span><br><span class="line">                                <span class="keyword">if</span>(statics) &#123;</span><br><span class="line">                                    injectableMembers.add(removed2);</span><br><span class="line">                                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                    overrideIndex.removeIfOverriddenBy(method1, <span class="keyword">true</span>, removed2);</span><br><span class="line">                                    overrideIndex.add(removed2);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                                <span class="keyword">boolean</span> removed1 = overrideIndex.removeIfOverriddenBy(method1, <span class="keyword">false</span>, removed2);</span><br><span class="line">                                <span class="keyword">if</span>(removed1) &#123;</span><br><span class="line">                                    logger.log(Level.WARNING, <span class="string">"Method: &#123;0&#125; is not a valid injectable method (because it either has misplaced binding annotations or specifies type parameters) but is overriding a method that is valid. Because it is not valid, the method will not be injected. To fix this, make the method a valid injectable method."</span>, method1);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="keyword">boolean</span> removed = overrideIndex.removeIfOverriddenBy(method1, <span class="keyword">false</span>, (InjectionPoint.InjectableMethod)<span class="keyword">null</span>);</span><br><span class="line">                            <span class="keyword">if</span>(removed) &#123;</span><br><span class="line">                                logger.log(Level.WARNING, <span class="string">"Method: &#123;0&#125; is not annotated with @Inject but is overriding a method that is annotated with @javax.inject.Inject.  Because it is not annotated with @Inject, the method will not be injected. To fix this, annotate the method with @Inject."</span>, method1);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####三.总结</p>
-<p>这三篇过来，依赖注入给我们带来了什么？</p>
-<p>解耦。</p>
-<p>当我们在一个对象中，不需要关心它所依赖的成员如何初始化，只关心用来使用或获取属性，依赖注入为我们实现了解耦。</p>
-<p>再就是RoboGuice的贴心，将Android基本组件考虑在内，为我们实现了很多注入，减少了我们调用系统服务或组件的代码，再就是RoboGuice考虑到了Android生命周期的特殊问题，将注入的成员对象生命周期保持与Context生命周期一致。</p>
-<p>再说说反射，尽管RoboGuice强调，使用roboblender会优化很大一部分注解性能，但是反射对于移动端设备参差不齐的配置，还是让人有一点点担心，如果项目足够大，且使用了大量的注解及注入，那么性能一定是有影响的。</p>
-<p>最后，RoboGuice确实是一个值得使用的框架，使用简单、上手较快、能实现模块解耦。光凭这几点优点</p>
-
-        
-      </div>
-      <p class="repo-list-meta">
-        <span class="meta-info">
-          <span class="octicon octicon-calendar"></span>
-           <time datetime="2016-03-03T18:12:20.000Z" itemprop="datePublished">2016-03-04</time>
-        </span>
-
-        <!--
-          
-            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RoboGuice/">RoboGuice</a></li></ul>
-          
-        -->
-
-        
-        
-            <span class="article-more-link">
-              <a href="/2016/03/04/20160303_roboguice3/#more" class="btn btn-sm btn-outline">Read More</a>
-           </span>
-        
-      </p>
-    </div>
-  </article>
-            
-                  <article id="post-20160304_roboguice2" class="repo-list">
-    <div class="repo-list-item" >
-      <h3 class="repo-list-name" itemprop="name">
-        
-  
-      <a class="article-title" href="/2016/03/03/20160304_roboguice2/">RoboGuice 3.0 （二）进阶篇</a>
-  
-
-      </h3>
-      <div class="repo-list-description article-entry">
-        
-          <p>上篇介绍了RoboGuice的接入及基本使用，其中涉及到了一个@Singleton和@ContextSingleton的注解，这些都是作用域的注解，这篇我们先说明有关作用域的问题。</p>
-<p>####一.作用域 Scope</p>
-<p>Scope指的是作用域，指的就是注入的对象的生命周期，RoboGuice提供了默认的几个作用域：</p>
-<ul>
-<li>@Singleton，被标注@Singleton注解的对象生命周期将保持和Application一致，也就是和整个App的生命周期一致。</li>
-<li>@ContextSingleton，被标注@ContextSingleton注解的对象生命周期将保持和Context提供者一致，这里主要指的是是Activity中，RoboGuice在Activity中提供了默认的Context容器，使我们初始化Activity成员的时候使用了这个容器中的Context，虽然注解</li>
-</ul>
-<p>我们先看下RoboGuice的官方文档对@ContextSingleton的说明。</p>
-<blockquote>
-<p>To the opposite of singletons created via @Singleton, the singletons created via@ContextSingleton are tied to a Context lifecycle and are garbage collected when this context gets destroyed.</p>
-</blockquote>
-<p>大致就是，和@Singleton注解不同，@ContextSingleton注解是与Context的生命周期绑定的，当Context被销毁时，这种单例会随Context回收而回收。</p>
-<blockquote>
-<p>When you use the annotation @ContextSingleton, you create an Object that will not be garbage collected within a given Context lifecycle. It will be destroyed when the context itself is destroyed, but will remain in memory even if your context doesn’t use it anymore. This annotation can still create memory leaks if you don’t use it properly, for instance when using fragments. </p>
-</blockquote>
-<p>也就是当我们使用@ContextSingleton时，虽然是随生命周期联动的，但是当我们不使用这个单例对象时（当Context还存在时），这个对象会一直存于内存中，一个很明显的例子就是Fragment，在Fragment中标注一个@ContextSingleton属性的成员，当Fragment被回收而Activity没被回收时(因为Fragment中Context是从依附的Activity中获取的)，还是会造成内存泄露。</p>
-<p>RoboGuice官方文档声称，我们会加入一个@FragmentScope来解决这个问题，但是并没有，那个issue被关闭了，这一点还是很迷的，目前也没看到什么好的解决办法，只有从代码层面规范。</p>
-<p>####二.对象绑定</p>
-<p>这里的对象绑定指的是将一个接口或类绑定到一个子类、对象、或对象提供容器上。当我们注入这个接口或类时，默认会根据绑定的类别初始化这个接口的实现。</p>
-<p>对象绑定需要定义module，并且注册module到manifast文件。</p>
-<p>欲练神功，需要两步：</p>
-<ul>
-<li>Register modules in your AndroidManifest.xml file</li>
-<li>Create classes that extend AbstractModule</li>
-</ul>
-<p>翻译成代码就是这样：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">application</span></span><br><span class="line">        <span class="attr">android:allowBackup</span>=<span class="string">"true"</span></span><br><span class="line">        <span class="attr">android:name</span>=<span class="string">".GuiceApplication"</span></span><br><span class="line">        <span class="attr">android:icon</span>=<span class="string">"@mipmap/ic_launcher"</span></span><br><span class="line">        <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span></span><br><span class="line">        <span class="attr">android:supportsRtl</span>=<span class="string">"true"</span></span><br><span class="line">        <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span><br><span class="line">            <span class="attr">android:name</span>=<span class="string">".MainActivity"</span></span><br><span class="line">            <span class="attr">android:label</span>=<span class="string">"@string/title_activity_main"</span></span><br><span class="line">            <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme.NoActionBar"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta-data</span> <span class="attr">android:name</span>=<span class="string">"roboguice.modules"</span></span><br><span class="line">            <span class="attr">android:value</span>=<span class="string">"github.pedroneer.roboguice.GuiceModule"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GuiceModule</span> <span class="keyword">extends</span> <span class="title">AbstractModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>好了，然后举个栗子。</p>
-<p>定义一个GsonProvider的接口，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GsonProvider</span> </span>&#123;</span><br><span class="line">    <span class="function">Gson <span class="title">get</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们在另一个类中实现了这个接口。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GsonProviderImpl</span> <span class="keyword">implements</span> <span class="title">GsonProvider</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Gson <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GsonBuilder().</span><br><span class="line">                serializeNulls().</span><br><span class="line">                create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在module中绑定GsonProvider到GsonProviderImpl上。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GuiceModule</span> <span class="keyword">extends</span> <span class="title">AbstractModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        bind(GsonProvider.class).to(GsonProviderImpl.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样我们在Activity中就可以使用@Inject去注入GsonProvider了，RoboGuice在初始化这个接口时会使用GsonProviderImpl定义的实现。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_main)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    GsonProvider gsonProvider;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        String demoString = gsonProvider.get().toJson(<span class="string">"123"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这时候你就会问了：”那我直接注入这个GsonProviderImpl不就可以了，你这是多此一举！”。</p>
-<p>RoboGuice还提供了另一种实现方法，可能写起来会更简单一些。</p>
-<p>这种方法就是在Module中定义Providers，简单理解就是容器提供这个对象的初始化服务，当你你需要使用这个对象时,容器会帮你初始化好。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GuiceModule</span> <span class="keyword">extends</span> <span class="title">AbstractModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//bind(GsonProvider.class).to(GsonProviderImpl.class);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="function">Gson <span class="title">provideGson</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GsonBuilder()</span><br><span class="line">                .serializeNulls().</span><br><span class="line">                        create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_main)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    Gson gson;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        String demoString = gson.toJson(<span class="string">"123"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样也是可以实现的，是不是觉得写起来更舒服一些，代码量也少了很多。</p>
-<p>####三.绑定类型</p>
-<p>当我们需要注入不同属性的对象时，会用到类型绑定。</p>
-<p>还是上面注入Gson的例子。当我需要属性不同的Gson时，上面的代码就实现不了了，比如上面提到的serializeNulls，是用来指定Gson在序列化时是否需要将null序列化。</p>
-<p>例如下面这个model：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unused"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommitData</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> commentNum;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> goodNum;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> badNum;</span><br><span class="line">    <span class="keyword">private</span> CommentReply commentReply;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCommentNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> commentNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCommentNum</span><span class="params">(<span class="keyword">int</span> commentNum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.commentNum = commentNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getGoodNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> goodNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setGoodNum</span><span class="params">(<span class="keyword">int</span> goodNum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.goodNum = goodNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBadNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> badNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBadNum</span><span class="params">(<span class="keyword">int</span> badNum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.badNum = badNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CommentReply <span class="title">getCommentReply</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> commentReply;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCommentReply</span><span class="params">(CommentReply commentReply)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.commentReply = commentReply;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">CommentReply</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String reply;</span><br><span class="line">        <span class="keyword">private</span> String time;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getReply</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> reply;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setReply</span><span class="params">(String reply)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.reply = reply;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> time;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTime</span><span class="params">(String time)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.time = time;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CommitData data = <span class="keyword">new</span> CommitData();</span><br><span class="line">data.setBadNum(<span class="number">20</span>);</span><br><span class="line">data.setCommentNum(<span class="number">30</span>);</span><br><span class="line">data.setGoodNum(<span class="number">49</span>);</span><br></pre></td></tr></table></figure>
-<p>当我们不初始化CommentReply对象时，带serializeNulls属性的Gson对象和不带是有区别的：</p>
-<ul>
-<li>注明serializeNulls：{“badNum”:20,”commentNum”:30,”commentReply”:null,”goodNum”:49}</li>
-<li>不带serializeNulls：{“badNum”:20,”commentNum”:30,”goodNum”:49}</li>
-</ul>
-<p>为了实现上述功能，我们之前定义的provider是有问题的，RoboGuice提供了类型的概念，我们可以定义和选择初始化使用的类型。使用的就是@Named注解，使用方法如下，当注入时，注明@Named字段来标示需要使用哪种初始化方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GuiceModule</span> <span class="keyword">extends</span> <span class="title">AbstractModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//bind(GsonProvider.class).to(GsonProviderImpl.class);</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"Serialize Nulls"</span>)</span><br><span class="line">    <span class="function">Gson <span class="title">provideGson</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GsonBuilder()</span><br><span class="line">                .serializeNulls().</span><br><span class="line">                        create();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"Custom"</span>)</span><br><span class="line">    <span class="function">Gson <span class="title">provideCustomGson</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GsonBuilder().</span><br><span class="line">                        create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_main)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"MainActivity"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"Serialize Nulls"</span>)</span><br><span class="line">    Gson gson;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"Custom"</span>)</span><br><span class="line">    Gson customGson;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressLint</span>(<span class="string">"SetTextI18n"</span>)</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        CommitData data = <span class="keyword">new</span> CommitData();</span><br><span class="line">        data.setBadNum(<span class="number">20</span>);</span><br><span class="line">        data.setCommentNum(<span class="number">30</span>);</span><br><span class="line">        data.setGoodNum(<span class="number">49</span>);</span><br><span class="line">        String demoString = gson.toJson(data);</span><br><span class="line">        Log.d(TAG, <span class="string">"onCreate: "</span> + demoString);</span><br><span class="line"></span><br><span class="line">        demoString = customGson.toJson(data);</span><br><span class="line">        Log.d(TAG, <span class="string">"onCreate: "</span> + demoString);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>除了上面这种写法，我们还可以这样使用：效果是相同的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GuiceModule</span> <span class="keyword">extends</span> <span class="title">AbstractModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      bind(GsonProvider.class).annotatedWith(Names.named(<span class="string">"Custom"</span>)).to(GsonProviderImpl.class);</span><br><span class="line">        bind(GsonProvider.class).annotatedWith(Names.named(<span class="string">"Serialize Nulls"</span>)).to(GsonNotSNProviderImpl.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GsonProviderImpl</span> <span class="keyword">implements</span> <span class="title">GsonProvider</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Gson <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GsonBuilder().</span><br><span class="line">                serializeNulls().</span><br><span class="line">                create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GsonNotSNProviderImpl</span> <span class="keyword">implements</span> <span class="title">GsonProvider</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Gson <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GsonBuilder().create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>除此之外，RoboGuice还提供手动绑定实现Provider<t>方法的方式，代码如下。</t></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GuiceModule</span> <span class="keyword">extends</span> <span class="title">AbstractModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        bind(GsonProvider.class).annotatedWith(Names.named(<span class="string">"Serialize Nulls"</span>)).to(GsonNotSNProviderImpl.class);</span><br><span class="line"></span><br><span class="line">        bind(GsonProvider.class).annotatedWith(Names.named(<span class="string">"Custom"</span>)).toProvider(GsonImpl.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">GsonImpl</span> <span class="keyword">implements</span> <span class="title">Provider</span>&lt;<span class="title">GsonProviderImpl</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> GsonProviderImpl <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> GsonProviderImpl();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_main)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"MainActivity"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"Serialize Nulls"</span>)</span><br><span class="line">    GsonProvider gson;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"Custom"</span>)</span><br><span class="line">    GsonProvider customGson;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        CommitData data = <span class="keyword">new</span> CommitData();</span><br><span class="line">        data.setBadNum(<span class="number">20</span>);</span><br><span class="line">        data.setCommentNum(<span class="number">30</span>);</span><br><span class="line">        data.setGoodNum(<span class="number">49</span>);</span><br><span class="line">        String demoString = gson.get().toJson(data);</span><br><span class="line">        Log.d(TAG, <span class="string">"onCreate: "</span> + demoString);</span><br><span class="line"></span><br><span class="line">        demoString = customGson.get().toJson(data);</span><br><span class="line">        Log.d(TAG, <span class="string">"onCreate: "</span> + demoString);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后，还有一些比较小的点，比如Module可以存在默认的构造方法，传入的是Application，绑定时候的作用域、使用Provider注解的作用域（下图中in.(Singleton.class)）等等。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GuiceModule</span> <span class="keyword">extends</span> <span class="title">AbstractModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Application application;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GuiceModule</span><span class="params">(Application application)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.application = application;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        bind(GsonProvider.class).annotatedWith(Names.named(<span class="string">"Serialize Nulls"</span>)).to(GsonNotSNProviderImpl.class);</span><br><span class="line"></span><br><span class="line">        bind(GsonProvider.class).annotatedWith(Names.named(<span class="string">"Custom"</span>)).toProvider(GsonImpl.class).in(Singleton.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">GsonImpl</span> <span class="keyword">implements</span> <span class="title">Provider</span>&lt;<span class="title">GsonProviderImpl</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> GsonProviderImpl <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> GsonProviderImpl();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####四.其他常用方法</p>
-<p>RoboGuice还提供了IntentExtra的获取，但是注意，如果标注@InjectExtra的value没有找到对应的数据，则app会crash，如果允许获取不到extra，则必须将optional = true。</p>
-<p>除此之外，RoboGuice提供了直接获取图中对象的方法，如下的Gson对象获取。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_second)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecondActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@InjectExtra</span>(value = <span class="string">"pull"</span>, optional = <span class="keyword">true</span>)</span><br><span class="line">    String pull;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        Gson gson = RoboGuice.getInjector(<span class="keyword">this</span>).getInstance(Gson.class);</span><br><span class="line">        String demoStr = gson.toJson(pull);</span><br><span class="line">        Ln.d(demoStr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####五.Events、Ln</p>
-<p>RoboGuice提供了默认的观察者模式，我们可以接收Activity的生命周期事件。</p>
-<p>Ln则是RoboGuice的log神器，使用比较方便。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_main)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingOnResume</span><span class="params">(@Observes OnResumeEvent event)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (event.getActivity() != <span class="keyword">null</span>) &#123;</span><br><span class="line">            Ln.e(<span class="string">"onResume"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">03-03 18:40:20.053 12381-12381/github.pedroneer.roboguice E//MainActivity.java:72: main onResume</span><br></pre></td></tr></table></figure>
-<p>此外还可以自定义事件，可以在RoboGuice的Wiki查看，这里不赘述。</p>
-<p><a href="https://github.com/roboguice/roboguice/wiki/Using-Events-in-your-RoboGuice-application" target="_blank" rel="external">https://github.com/roboguice/roboguice/wiki/Using-Events-in-your-RoboGuice-application</a></p>
-
-        
-      </div>
-      <p class="repo-list-meta">
-        <span class="meta-info">
-          <span class="octicon octicon-calendar"></span>
-           <time datetime="2016-03-03T14:23:12.000Z" itemprop="datePublished">2016-03-03</time>
-        </span>
-
-        <!--
-          
-            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RoboGuice/">RoboGuice</a></li></ul>
-          
-        -->
-
-        
-        
-            <span class="article-more-link">
-              <a href="/2016/03/03/20160304_roboguice2/#more" class="btn btn-sm btn-outline">Read More</a>
-           </span>
-        
-      </p>
-    </div>
-  </article>
-            
-                  <article id="post-20160303_roboguice1" class="repo-list">
-    <div class="repo-list-item" >
-      <h3 class="repo-list-name" itemprop="name">
-        
-  
-      <a class="article-title" href="/2016/03/02/20160303_roboguice1/">RoboGuice 3.0 （一）入坑篇</a>
-  
-
-      </h3>
-      <div class="repo-list-description article-entry">
-        
-          <p>###RoboGuice是什么？</p>
-<p>一个Android上的依赖注入框架。</p>
-<p>###依赖注入是什么？</p>
-<p>从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。</p>
-<p>依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。</p>
-<p>####一.接入</p>
-<p>在build.grade中添加依赖</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    provided <span class="string">'org.roboguice:roboblender:3.0.1'</span></span><br><span class="line">    compile <span class="string">'org.roboguice:roboguice:3.0.1'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####二.视图注入</p>
-<p>接触依赖注入后，最方便的可能就是视图的注入了，将之前成片的findViewById的代码省去，Activity中的代码量完成了史上第一次大扫除。</p>
-<p>视图注入分三个步骤：</p>
-<ul>
-<li>继承自RoboGuice的RoboActivity 当然RoboFragmentActivity也可以</li>
-<li>为Activity加入content view（setContentView也可以使用注解来实现）</li>
-<li>使用@InjectView来注入视图</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_main)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@InjectView</span>(R.id.text_test)</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        textView.setText(<span class="string">"hello there!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由此可见，视图注入大大简化了Activity中的代码量。</p>
-<p>同理 ，Fragment也是一样的。需要注意的是，视图注入需要在onViewCreated后使用。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AFragment</span> <span class="keyword">extends</span> <span class="title">RoboFragment</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@InjectView</span>(R.id.fragment_text)</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AFragment <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> AFragment();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> inflater.inflate(R.layout.a_fragment, container, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onViewCreated</span><span class="params">(View view, Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onViewCreated(view, savedInstanceState);</span><br><span class="line">        textView.setText(<span class="string">"Hi there!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####三.资源注入</p>
-<p>RoboGuice除了提供了视图注入，还提供了资源的注入。</p>
-<p>比如String资源、color资源、Animation资源等。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@ContentView(R.layout.activity_main)</span><br><span class="line">public class MainActivity extends RoboFragmentActivity &#123;</span><br><span class="line"></span><br><span class="line">    @InjectView(R.id.text_test)</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    @InjectResource(R.string.app_name)</span><br><span class="line">    String appName;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        textView.setText(appName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####四.系统服务注入</p>
-<p>在Activity中可以注入各种系统服务，比如震动、通知管理。</p>
-<p>完整的列表在这：<a href="https://github.com/roboguice/roboguice/wiki/Provided-Injections" target="_blank" rel="external">https://github.com/roboguice/roboguice/wiki/Provided-Injections</a></p>
-<p>这样我们不用再去写烦人的getSystemService这种代码。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_main)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    Vibrator vibrator;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    NotificationManager notificationManager;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        vibrator.vibrate(<span class="number">500L</span>);</span><br><span class="line">        notificationManager.cancelAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####五.对象注入</p>
-<p>对象的注入最大程度的完成了代码的解耦工作。也是类似框架中上手最慢的。</p>
-<p>想象一个场景，比如在Activity中用户判断登录状态，我们不需要在乎UserInfo是如何初始化的，只在乎得到用户是否登陆的状态。</p>
-<p>结合实际情况，举个例子。这是一个用来储存用户信息的model。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String userId;</span><br><span class="line">    <span class="keyword">private</span> String token;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getToken</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setToken</span><span class="params">(String token)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.token = token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLogin</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !TextUtils.isEmpty(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用注解注入UserInfo，RoboGuice会帮我们完成初始化工作，初始化时调用UserInfo的默认构造方法。</p>
-<p>这样在没有写<code>userInfo = new UserInfo()</code>我们便操作了对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_main)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    UserInfo userInfo;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(<span class="keyword">this</span>);</span><br><span class="line">        userId = sharedPreferences.getString(<span class="string">"userId"</span>, <span class="string">""</span>);</span><br><span class="line">        token = sharedPreferences.getString(<span class="string">"token"</span>, <span class="string">""</span>);</span><br><span class="line">        String userId = sharedPreferences.getString(<span class="string">"userId"</span>, <span class="string">""</span>);</span><br><span class="line">        String token = sharedPreferences.getString(<span class="string">"token"</span>, <span class="string">""</span>);</span><br><span class="line">	    userInfo.setUserId(userId);</span><br><span class="line">        userInfo.setToken(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>再然而onCreate内部的取用户信息的代码确实很丑陋，我们需要在Activity中完成与页面不相关的初始化工作，核心原因是我们依赖了Activity中的Context。这就相当于，如果对象中的成员初始化时需要对象的一些属性，我们很难巧妙的将属性交给容器管理着负责初始化成员。</p>
-<p>那么又该如何处理这么丑陋的代码呢。</p>
-<p>RoboGuice提供了更让人欣喜的功能，将对象中的成员初始化需要的属性封装起来，提交给容器管理者，这样当依赖对象属性的成员初始化过程就可以完全脱离对象，在成功后注入回对象即可。</p>
-<blockquote>
-<p>Talk is cheap!  Show me the code.    </p>
-</blockquote>
-<p>在RoboGuice的Activity中，容器管理者已经默认提供了的属性比如页面中的Context，这样当成员初始化时，可以使用@Inject来标记构造方法以用来告诉RoboGuice不使用默认构造方法进行初始化，当构造方法中的参数属性已经由Activity对象提交给容器管理者时，即容器管理者会使用该构造方法进行初始化。</p>
-<p>我们经过改装，UserInfo和Activity是这样的。其中@ContextSingleton注解标示UserInfo随Context的生命周期销毁而销毁，如果这里改为@Singleton，那么UserInfo的生命周期将是整个应用的生命周期，如果两个Activity都使用了该注解，那么产生的对象将是同一个。</p>
-<p>这里需要注意的是，如果@ContextSingleton使用不当，将造成内存泄露，这个以后会有例子说明。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContextSingleton</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"UserInfo"</span>;</span><br><span class="line">    <span class="keyword">private</span> Context context;</span><br><span class="line">    <span class="keyword">private</span> String userId;</span><br><span class="line">    <span class="keyword">private</span> String token;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserInfo</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.context = context;</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);</span><br><span class="line">        userId = sharedPreferences.getString(<span class="string">"userId"</span>, <span class="string">""</span>);</span><br><span class="line">        token = sharedPreferences.getString(<span class="string">"token"</span>, <span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getToken</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setToken</span><span class="params">(String token)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.token = token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLogin</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !TextUtils.isEmpty(token);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saveUserInfo</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();</span><br><span class="line">        editor.putString(<span class="string">"userId"</span>, userId);</span><br><span class="line">        editor.apply();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_main)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@InjectView</span>(R.id.text_test)</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    UserInfo userInfo;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        <span class="keyword">if</span>(userInfo.isLogin())&#123;</span><br><span class="line">            textView.setText(userInfo.getUserId());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            textView.setText(<span class="string">"未登录"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>至此，入坑篇告一段落，这篇主要说明了RoboGuice的视图、资源、系统服务、对象等注入，为开发带来便捷，同时也减少了模块的耦合性。</p>
-
-        
-      </div>
-      <p class="repo-list-meta">
-        <span class="meta-info">
-          <span class="octicon octicon-calendar"></span>
-           <time datetime="2016-03-02T02:00:00.000Z" itemprop="datePublished">2016-03-02</time>
-        </span>
-
-        <!--
-          
-            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RoboGuice/">RoboGuice</a></li></ul>
-          
-        -->
-
-        
-        
-            <span class="article-more-link">
-              <a href="/2016/03/02/20160303_roboguice1/#more" class="btn btn-sm btn-outline">Read More</a>
-           </span>
-        
-      </p>
-    </div>
-  </article>
-            
-        </div>
-        
-            <div class="column one-third">
-                
-    <h3>Popular Repositories</h3>
-    <div class="popular-container"></div>
-    
-    <script type="text/template" id="popular-list-template">
-        <section class="repo-card">
-            <a href="{%=clone_url%}" target="_blank">
-                <div class="repo-card-image geopattern" data-pattern-id="{%=name%}">
-                    <h3 class="repo-card-title">{%=name%}</h3>
-                </div>
-                <div class="repo-card-body-wrapper">
-                    <div class="repo-card-body">
-                        <p class="repo-card-description">{%=description%}</p>
-                        <div class="repo-card-meta">
-                            <span class="meta-info tooltipped tooltipped-n {%=language%}" aria-label="{%=language%} Project">{%=language%}</span>
-                            <span class="meta-info tooltipped tooltipped-n" aria-label="{%=stargazers_count%} stars">
-                                <span class="octicon octicon-star"></span> {%=stargazers_count%}</span>
-                            <span class="meta-info tooltipped tooltipped-n" aria-label="{%=forks_count%}">
-                                <span class="octicon octicon-git-branch"></span> {%=forks_count%}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </section>
-    </script>
-
-    <script src="/js/baiduTemplate.js"></script>
-    <script type="text/javascript">
-        var popular_repos = function(){
-
-            var baiduTpl = new Object();
-
-            var handleTpl = function(){
-                baiduTpl.popular_list = baidu.template("popular-list-template");
-            };
-
-            var handleGithub = function(){
-                var popularContainer = $(".popular-container");
-
-                var repos = "cordova-plugin-alipay,hexo-theme-primer".split(",");
-                for(var i in repos){
-                    var name = repos[i];
-                    $.get("https://api.github.com/repos/yumemor/"+name,handle);
-                }
-                function handle(result){
-                    if(result){
-                        var html = baiduTpl.popular_list(result);
-                        popularContainer.append(html);
-                        $(".geopattern").each(function(){           
-                            $(this).geopattern($(this).data('pattern-id'));
-                        });
-                    }
-                }
-            };
-
-            return {
-                init:function(){
-                    handleTpl();
-                    handleGithub();
-                }
-            }
-        }; 
-        $(popular_repos().init);
-    </script>
-
-
-
-
-            </div>
-        
-    </div>
-
-    
-</section>
-
-<footer class="container">
-    <div class="site-footer" role="contentinfo">
-        <div class="copyright left mobile-block">
-                © 2016
-                <span title="yumemor">yumemor</span>
-                <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
-        </div>
-
-        <ul class="site-footer-links right mobile-hidden">
-            <li>
-                <a href="javascript:window.scrollTo(0,0)" >TOP</a>
-            </li>
-        </ul>
-
-        <a href="https://github.com/yumemor/yumemor.github.io" target="_blank" aria-label="view source code">
-            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
-        </a>
-
-        <ul class="site-footer-links mobile-hidden">
-            
-             
-              
-              <li>
-                <a href="/"  title="Home">Home</a>
-              </li>
-            
-              
-              <li>
-                <a href="/subentry/Life/" target="target" title="Life">Life</a>
-              </li>
-            
-              
-              <li>
-                <a href="/open-source/"  title="Open-Source">Open-Source</a>
-              </li>
-            
-              
-              <li>
-                <a href="/blog/"  title="Blog">Blog</a>
-              </li>
-            
-              
-              <li>
-                <a href="/guestbook/"  title="Guestbook">Guestbook</a>
-              </li>
-            
-
-        </ul>
-
-    </div>
-</footer>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Pedro Neer</a></h1>
+		</hgroup>
 
 		
-		<script src="/js/typer.js"></script>
 
-		<script src="/js/geopattern.js"></script>
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
 
-		<script src="/js/index.js"></script>
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/RoboGuice/" style="font-size: 10px;">RoboGuice</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
 
-		 <script src="/js/popular_repo.js"></script> 
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
 
-	</body>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Pedro Neer</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="null" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Pedro Neer</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+  
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/03/04/20160303_roboguice3/" class="archive-article-date">
+  	<time datetime="2016-03-03T18:12:20.000Z" itemprop="datePublished">Mar 4</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/03/04/20160303_roboguice3/">RoboGuice 3.0 （三）总结篇</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RoboGuice/">RoboGuice</a></li></ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/03/03/20160304_roboguice2/" class="archive-article-date">
+  	<time datetime="2016-03-03T14:23:12.000Z" itemprop="datePublished">Mar 3</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/03/03/20160304_roboguice2/">RoboGuice 3.0 （二）进阶篇</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RoboGuice/">RoboGuice</a></li></ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/03/02/20160303_roboguice1/" class="archive-article-date">
+  	<time datetime="2016-03-02T02:00:00.000Z" itemprop="datePublished">Mar 2</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/03/02/20160303_roboguice1/">RoboGuice 3.0 （一）入坑篇</a>
+    </h1>
+  
+
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RoboGuice/">RoboGuice</a></li></ul>
+	</div>
+
+          
+
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
+
+    
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Pedro Neer
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: false,
+		isArchive: false,
+		isTag: true,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
 </html>
