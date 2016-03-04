@@ -6,34 +6,28 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>RoboGuice 3.0 （一）入坑篇 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###RoboGuice是什么？
-一个Android上的依赖注入框架。
+  <meta name="description" content="RoboGuice是什么？一个Android上的依赖注入框架。
 依赖注入是什么？从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。
 依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。
-####一.接入
-在build.grade中添加依赖
-1">
+一.接入在build.grade中添加依赖
+1234depend">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RoboGuice 3.0 （一）入坑篇">
 <meta property="og:url" content="http://yoursite.com/2016/03/02/20160303_roboguice1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="###RoboGuice是什么？
-一个Android上的依赖注入框架。
+<meta property="og:description" content="RoboGuice是什么？一个Android上的依赖注入框架。
 依赖注入是什么？从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。
 依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。
-####一.接入
-在build.grade中添加依赖
-1">
-<meta property="og:updated_time" content="2016-03-04T06:06:09.000Z">
+一.接入在build.grade中添加依赖
+1234depend">
+<meta property="og:updated_time" content="2016-03-04T06:08:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RoboGuice 3.0 （一）入坑篇">
-<meta name="twitter:description" content="###RoboGuice是什么？
-一个Android上的依赖注入框架。
+<meta name="twitter:description" content="RoboGuice是什么？一个Android上的依赖注入框架。
 依赖注入是什么？从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。
 依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。
-####一.接入
-在build.grade中添加依赖
-1">
+一.接入在build.grade中添加依赖
+1234depend">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -252,15 +246,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###RoboGuice是什么？</p>
-<p>一个Android上的依赖注入框架。</p>
+        <h3 id="RoboGuice是什么？"><a href="#RoboGuice是什么？" class="headerlink" title="RoboGuice是什么？"></a>RoboGuice是什么？</h3><p>一个Android上的依赖注入框架。</p>
 <h3 id="依赖注入是什么？"><a href="#依赖注入是什么？" class="headerlink" title="依赖注入是什么？"></a>依赖注入是什么？</h3><p>从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。</p>
 <p>依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。</p>
-<p>####一.接入</p>
-<p>在build.grade中添加依赖</p>
+<h4 id="一-接入"><a href="#一-接入" class="headerlink" title="一.接入"></a>一.接入</h4><p>在build.grade中添加依赖</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    provided <span class="string">'org.roboguice:roboblender:3.0.1'</span></span><br><span class="line">    compile <span class="string">'org.roboguice:roboguice:3.0.1'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####二.视图注入</p>
-<p>接触依赖注入后，最方便的可能就是视图的注入了，将之前成片的findViewById的代码省去，Activity中的代码量完成了史上第一次大扫除。</p>
+<h4 id="二-视图注入"><a href="#二-视图注入" class="headerlink" title="二.视图注入"></a>二.视图注入</h4><p>接触依赖注入后，最方便的可能就是视图的注入了，将之前成片的findViewById的代码省去，Activity中的代码量完成了史上第一次大扫除。</p>
 <p>视图注入分三个步骤：</p>
 <ul>
 <li>继承自RoboGuice的RoboActivity 当然RoboFragmentActivity也可以</li>
@@ -271,17 +262,14 @@
 <p>由此可见，视图注入大大简化了Activity中的代码量。</p>
 <p>同理 ，Fragment也是一样的。需要注意的是，视图注入需要在onViewCreated后使用。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AFragment</span> <span class="keyword">extends</span> <span class="title">RoboFragment</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@InjectView</span>(R.id.fragment_text)</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> AFragment <span class="title">newInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> AFragment();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">onCreateView</span><span class="params">(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> inflater.inflate(R.layout.a_fragment, container, <span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onViewCreated</span><span class="params">(View view, Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onViewCreated(view, savedInstanceState);</span><br><span class="line">        textView.setText(<span class="string">"Hi there!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####三.资源注入</p>
-<p>RoboGuice除了提供了视图注入，还提供了资源的注入。</p>
+<h4 id="三-资源注入"><a href="#三-资源注入" class="headerlink" title="三.资源注入"></a>三.资源注入</h4><p>RoboGuice除了提供了视图注入，还提供了资源的注入。</p>
 <p>比如String资源、color资源、Animation资源等。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@ContentView(R.layout.activity_main)</span><br><span class="line">public class MainActivity extends RoboFragmentActivity &#123;</span><br><span class="line"></span><br><span class="line">    @InjectView(R.id.text_test)</span><br><span class="line">    TextView textView;</span><br><span class="line"></span><br><span class="line">    @InjectResource(R.string.app_name)</span><br><span class="line">    String appName;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        textView.setText(appName);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####四.系统服务注入</p>
-<p>在Activity中可以注入各种系统服务，比如震动、通知管理。</p>
+<h4 id="四-系统服务注入"><a href="#四-系统服务注入" class="headerlink" title="四.系统服务注入"></a>四.系统服务注入</h4><p>在Activity中可以注入各种系统服务，比如震动、通知管理。</p>
 <p>完整的列表在这：<a href="https://github.com/roboguice/roboguice/wiki/Provided-Injections" target="_blank" rel="external">https://github.com/roboguice/roboguice/wiki/Provided-Injections</a></p>
 <p>这样我们不用再去写烦人的getSystemService这种代码。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContentView</span>(R.layout.activity_main)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">RoboFragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    Vibrator vibrator;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    NotificationManager notificationManager;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        vibrator.vibrate(<span class="number">500L</span>);</span><br><span class="line">        notificationManager.cancelAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>####五.对象注入</p>
-<p>对象的注入最大程度的完成了代码的解耦工作。也是类似框架中上手最慢的。</p>
+<h4 id="五-对象注入"><a href="#五-对象注入" class="headerlink" title="五.对象注入"></a>五.对象注入</h4><p>对象的注入最大程度的完成了代码的解耦工作。也是类似框架中上手最慢的。</p>
 <p>想象一个场景，比如在Activity中用户判断登录状态，我们不需要在乎UserInfo是如何初始化的，只在乎得到用户是否登陆的状态。</p>
 <p>结合实际情况，举个例子。这是一个用来储存用户信息的model。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String userId;</span><br><span class="line">    <span class="keyword">private</span> String token;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getToken</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setToken</span><span class="params">(String token)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.token = token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLogin</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !TextUtils.isEmpty(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
