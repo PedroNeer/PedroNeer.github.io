@@ -8,26 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="RoboGuice是什么？一个Android上的依赖注入框架。
 依赖注入是什么？从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。
-依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。
-一.接入在build.grade中添加依赖
-1234depend">
+依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RoboGuice 3.0 （一）入坑篇">
 <meta property="og:url" content="http://yoursite.com/2016/03/02/20160303_roboguice1/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="RoboGuice是什么？一个Android上的依赖注入框架。
 依赖注入是什么？从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。
-依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。
-一.接入在build.grade中添加依赖
-1234depend">
-<meta property="og:updated_time" content="2016-03-04T06:08:27.000Z">
+依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。">
+<meta property="og:updated_time" content="2016-03-06T15:08:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RoboGuice 3.0 （一）入坑篇">
 <meta name="twitter:description" content="RoboGuice是什么？一个Android上的依赖注入框架。
 依赖注入是什么？从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。
-依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。
-一.接入在build.grade中添加依赖
-1234depend">
+依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -248,7 +242,7 @@
       
         <h3 id="RoboGuice是什么？"><a href="#RoboGuice是什么？" class="headerlink" title="RoboGuice是什么？"></a>RoboGuice是什么？</h3><p>一个Android上的依赖注入框架。</p>
 <h3 id="依赖注入是什么？"><a href="#依赖注入是什么？" class="headerlink" title="依赖注入是什么？"></a>依赖注入是什么？</h3><p>从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。</p>
-<p>依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。</p>
+<p>依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。<br><a id="more"></a></p>
 <h4 id="一-接入"><a href="#一-接入" class="headerlink" title="一.接入"></a>一.接入</h4><p>在build.grade中添加依赖</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    provided <span class="string">'org.roboguice:roboblender:3.0.1'</span></span><br><span class="line">    compile <span class="string">'org.roboguice:roboguice:3.0.1'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="二-视图注入"><a href="#二-视图注入" class="headerlink" title="二.视图注入"></a>二.视图注入</h4><p>接触依赖注入后，最方便的可能就是视图的注入了，将之前成片的findViewById的代码省去，Activity中的代码量完成了史上第一次大扫除。</p>

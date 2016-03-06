@@ -18,7 +18,7 @@
 一.作用域 ScopeScope指的是作用域，指的就是注入的对象的生命周期，RoboGuice提供了默认的几个作用域：
 
 @Singleton，被标注@Singleton注解的对象生命周期将保持和Application">
-<meta property="og:updated_time" content="2016-03-04T06:09:20.000Z">
+<meta property="og:updated_time" content="2016-03-06T15:08:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RoboGuice 3.0 （二）进阶篇">
 <meta name="twitter:description" content="上篇介绍了RoboGuice的接入及基本使用，其中涉及到了一个@Singleton和@ContextSingleton的注解，这些都是作用域的注解，这篇我们先说明有关作用域的问题。
@@ -247,9 +247,9 @@
 <h4 id="一-作用域-Scope"><a href="#一-作用域-Scope" class="headerlink" title="一.作用域 Scope"></a>一.作用域 Scope</h4><p>Scope指的是作用域，指的就是注入的对象的生命周期，RoboGuice提供了默认的几个作用域：</p>
 <ul>
 <li>@Singleton，被标注@Singleton注解的对象生命周期将保持和Application一致，也就是和整个App的生命周期一致。</li>
-<li>@ContextSingleton，被标注@ContextSingleton注解的对象生命周期将保持和Context提供者一致，这里主要指的是是Activity中，RoboGuice在Activity中提供了默认的Context容器，使我们初始化Activity成员的时候使用了这个容器中的Context，虽然注解</li>
+<li>@ContextSingleton，被标注@ContextSingleton注解的对象生命周期将保持和Context提供者一致，这里主要指的是是Activity中，RoboGuice在Activity中提供了默认的Context容器，使我们初始化Activity成员的时候使用了这个容器中的Context，虽然注解<a id="more"></a>
+我们先看下RoboGuice的官方文档对@ContextSingleton的说明。</li>
 </ul>
-<p>我们先看下RoboGuice的官方文档对@ContextSingleton的说明。</p>
 <blockquote>
 <p>To the opposite of singletons created via @Singleton, the singletons created via@ContextSingleton are tied to a Context lifecycle and are garbage collected when this context gets destroyed.</p>
 </blockquote>
