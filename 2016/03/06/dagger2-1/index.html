@@ -4,17 +4,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Pedro Neer的博客</title>
+  <title>Dagger2 (一) 入坑篇 | Pedro Neer的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pedro Neer的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="为什么是Dagger2官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？
+Dagger2是第一个全部使用自动生成代码的框架。
+框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。
+一.接入Dagger2使用了生成代码的方式，这里需要apt的插件。
+123456789buildscript &amp;#123;    repositories &amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dagger2 (一) 入坑篇">
+<meta property="og:url" content="http://yoursite.com/2016/03/06/dagger2-1/index.html">
 <meta property="og:site_name" content="Pedro Neer的博客">
-<meta property="og:description">
+<meta property="og:description" content="为什么是Dagger2官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？
+Dagger2是第一个全部使用自动生成代码的框架。
+框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。
+一.接入Dagger2使用了生成代码的方式，这里需要apt的插件。
+123456789buildscript &amp;#123;    repositories &amp;#123">
+<meta property="og:updated_time" content="2016-03-07T02:08:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pedro Neer的博客">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Dagger2 (一) 入坑篇">
+<meta name="twitter:description" content="为什么是Dagger2官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？
+Dagger2是第一个全部使用自动生成代码的框架。
+框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。
+一.接入Dagger2使用了生成代码的方式，这里需要apt的插件。
+123456789buildscript &amp;#123;    repositories &amp;#123">
   
     <link rel="alternative" href="/atom.xml" title="Pedro Neer的博客" type="application/atom+xml">
   
@@ -154,9 +167,7 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
-  
-    <article id="post-dagger2-1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-dagger2-1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2016/03/06/dagger2-1/" class="article-date">
@@ -172,12 +183,23 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/06/dagger2-1/">Dagger2 (一) 入坑篇</a>
+    <h1 class="article-title" itemprop="name">
+      Dagger2 (一) 入坑篇
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dagger2/">dagger2</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -195,222 +217,68 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dagger2/">dagger2</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/04/roboguice3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RoboGuice 3.0 （三）总结篇</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
   
 </article>
 
 
-
-
-
-
-
-
-
-  
-    <article id="post-roboguice3" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/04/roboguice3/" class="article-date">
-  	<time datetime="2016-03-03T18:12:20.000Z" itemprop="datePublished">2016-03-04</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/04/roboguice3/">RoboGuice 3.0 （三）总结篇</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>经过前两篇的介绍，我们了解了如何使用RoboGuice方便的为我们注入需要的对象，这篇将着重说明原理。</p>
-<h4 id="一-Guice与RoboGuice"><a href="#一-Guice与RoboGuice" class="headerlink" title="一.Guice与RoboGuice"></a>一.Guice与RoboGuice</h4><p>Guise是Google开发的一个轻量级的依赖注入框架，主要针对Java使用的。</p>
-<p>RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的依赖注入框架。</p>
-<p>上两篇中所提到的POJO注入，说白了就是对象注入，大部分方法都是Guice框架中的。RoboGuice主要在视图注入及Android个性化的注入上下功夫。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RoboGuice/">RoboGuice</a></li></ul>
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/04/roboguice3/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
 
 
 
-
-
-
-  
-    <article id="post-roboguice2" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/03/roboguice2/" class="article-date">
-  	<time datetime="2016-03-03T14:23:12.000Z" itemprop="datePublished">2016-03-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/03/roboguice2/">RoboGuice 3.0 （二）进阶篇</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>上篇介绍了RoboGuice的接入及基本使用，其中涉及到了一个@Singleton和@ContextSingleton的注解，这些都是作用域的注解，这篇我们先说明有关作用域的问题。</p>
-<h4 id="一-作用域-Scope"><a href="#一-作用域-Scope" class="headerlink" title="一.作用域 Scope"></a>一.作用域 Scope</h4><p>Scope指的是作用域，指的就是注入的对象的生命周期，RoboGuice提供了默认的几个作用域：</p>
-<ul>
-<li>@Singleton，被标注@Singleton注解的对象生命周期将保持和Application一致，也就是和整个App的生命周期一致。</li>
-<li>@ContextSingleton，被标注@ContextSingleton注解的对象生命周期将保持和Context提供者一致，这里主要指的是是Activity中，RoboGuice在Activity中提供了默认的Context容器，使我们初始化Activity成员的时候使用了这个容器中的Context，虽然注解
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RoboGuice/">RoboGuice</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/03/roboguice2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="dagger2-1" data-title="Dagger2 (一) 入坑篇" data-url="http://yoursite.com/2016/03/06/dagger2-1/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
 
-
-
-
-
-
-  
-    <article id="post-roboguice1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/02/roboguice1/" class="article-date">
-  	<time datetime="2016-03-02T02:00:00.000Z" itemprop="datePublished">2016-03-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/02/roboguice1/">RoboGuice 3.0 （一）入坑篇</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="RoboGuice是什么？"><a href="#RoboGuice是什么？" class="headerlink" title="RoboGuice是什么？"></a>RoboGuice是什么？</h3><p>一个Android上的依赖注入框架。</p>
-<h3 id="依赖注入是什么？"><a href="#依赖注入是什么？" class="headerlink" title="依赖注入是什么？"></a>依赖注入是什么？</h3><p>从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。</p>
-<p>依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RoboGuice/">RoboGuice</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/03/02/roboguice1/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -434,8 +302,8 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

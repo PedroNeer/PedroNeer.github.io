@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>RoboGuice 3.0 （一）入坑篇 | Hexo</title>
+  <title>RoboGuice 3.0 （一）入坑篇 | Pedro Neer的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="RoboGuice是什么？一个Android上的依赖注入框架。
 依赖注入是什么？从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。
@@ -12,7 +12,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="RoboGuice 3.0 （一）入坑篇">
 <meta property="og:url" content="http://yoursite.com/2016/03/02/roboguice1/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Pedro Neer的博客">
 <meta property="og:description" content="RoboGuice是什么？一个Android上的依赖注入框架。
 依赖注入是什么？从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。
 依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。">
@@ -23,7 +23,7 @@
 依赖注入是什么？从字面理解，这个框架做了两件事情，第一是去除依赖，第二是注入依赖。简单理解就是，将对象的初始化委托给一个容器控制器，即去除依赖，再从容器控制器中构建依赖，注入回原本的对象中，即注入依赖。
 依赖注入的好处是对象不需要在乎其依赖的初始化，使代码变得无比简洁。">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Pedro Neer的博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -48,6 +48,8 @@
 		</hgroup>
 
 		
+		<p class="header-subtitle">欢迎来的我的技术博客</p>
+		
 
 		
 			<div class="switch-btn">
@@ -61,16 +63,6 @@
 							<div class="ribbon"></div>
 						</div>
 						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
 						
 					</div>
 					
@@ -81,10 +73,6 @@
 						<li>Menu</li>
 						<li>Tags</li>
 						
-						<li>Links</li>
-						
-						
-						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -106,13 +94,9 @@
 					<nav class="header-nav">
 						<div class="social">
 							
-								<a class="github" target="_blank" href="#" title="github">github</a>
+								<a class="github" target="_blank" href="https://github.com/PedroNeer" title="github">github</a>
 					        
-								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
-					        
-								<a class="rss" target="_blank" href="#" title="rss">rss</a>
-					        
-								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+								<a class="mail" target="_blank" href="/pedro.neer@gmail.com" title="mail">mail</a>
 					        
 						</div>
 					</nav>
@@ -121,37 +105,13 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/RoboGuice/" style="font-size: 10px;">RoboGuice</a>
+						<a href="/tags/RoboGuice/" style="font-size: 20px;">RoboGuice</a> <a href="/tags/dagger2/" style="font-size: 10px;">dagger2</a>
 					</div>
 				</section>
 				
 				
 				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
-			        
-			        </div>
-				</section>
-				
 
-				
-				
-				<section class="switch-part switch-part4">
-				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
-				</section>
 				
 			</div>
 		</div>
@@ -176,6 +136,8 @@
 			  <h1 class="header-author">Pedro Neer</h1>
 			</hgroup>
 			
+			<p class="header-subtitle">欢迎来的我的技术博客</p>
+			
 			<nav class="header-menu">
 				<ul>
 				
@@ -189,13 +151,9 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github">github</a>
+						<a class="github" target="_blank" href="https://github.com/PedroNeer" title="github">github</a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
-			        
-						<a class="rss" target="_blank" href="#" title="rss">rss</a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+						<a class="mail" target="_blank" href="/pedro.neer@gmail.com" title="mail">mail</a>
 			        
 				</div>
 			</nav>
@@ -380,7 +338,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false
+		open_in_new: true
 	}
 </script>
 <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>RoboGuice 3.0 （三）总结篇 | Hexo</title>
+  <title>RoboGuice 3.0 （三）总结篇 | Pedro Neer的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="经过前两篇的介绍，我们了解了如何使用RoboGuice方便的为我们注入需要的对象，这篇将着重说明原理。
 一.Guice与RoboGuiceGuise是Google开发的一个轻量级的依赖注入框架，主要针对Java使用的。
@@ -13,7 +13,7 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
 <meta property="og:type" content="article">
 <meta property="og:title" content="RoboGuice 3.0 （三）总结篇">
 <meta property="og:url" content="http://yoursite.com/2016/03/04/roboguice3/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Pedro Neer的博客">
 <meta property="og:description" content="经过前两篇的介绍，我们了解了如何使用RoboGuice方便的为我们注入需要的对象，这篇将着重说明原理。
 一.Guice与RoboGuiceGuise是Google开发的一个轻量级的依赖注入框架，主要针对Java使用的。
 RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的依赖注入框架。
@@ -26,7 +26,7 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
 RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的依赖注入框架。
 上两篇中所提到的POJO注入，说白了就是对象注入，大部分方法都是Guice框架中的。">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Pedro Neer的博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -51,6 +51,8 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
 		</hgroup>
 
 		
+		<p class="header-subtitle">欢迎来的我的技术博客</p>
+		
 
 		
 			<div class="switch-btn">
@@ -64,16 +66,6 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
 							<div class="ribbon"></div>
 						</div>
 						
-						<div class="icon-wrap icon-link hide" data-idx="2">
-							<div class="loopback_l"></div>
-							<div class="loopback_r"></div>
-						</div>
-						
-						
-						<div class="icon-wrap icon-me hide" data-idx="3">
-							<div class="user"></div>
-							<div class="shoulder"></div>
-						</div>
 						
 					</div>
 					
@@ -84,10 +76,6 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
 						<li>Menu</li>
 						<li>Tags</li>
 						
-						<li>Links</li>
-						
-						
-						<li>Über</li>
 						
 					</ul>
 				</div>
@@ -109,13 +97,9 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
 					<nav class="header-nav">
 						<div class="social">
 							
-								<a class="github" target="_blank" href="#" title="github">github</a>
+								<a class="github" target="_blank" href="https://github.com/PedroNeer" title="github">github</a>
 					        
-								<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
-					        
-								<a class="rss" target="_blank" href="#" title="rss">rss</a>
-					        
-								<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+								<a class="mail" target="_blank" href="/pedro.neer@gmail.com" title="mail">mail</a>
 					        
 						</div>
 					</nav>
@@ -124,37 +108,13 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/RoboGuice/" style="font-size: 10px;">RoboGuice</a>
+						<a href="/tags/RoboGuice/" style="font-size: 20px;">RoboGuice</a> <a href="/tags/dagger2/" style="font-size: 10px;">dagger2</a>
 					</div>
 				</section>
 				
 				
 				
-				<section class="switch-part switch-part3">
-					<div id="js-friends">
-					
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
-			        
-			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
-			        
-			        </div>
-				</section>
-				
 
-				
-				
-				<section class="switch-part switch-part4">
-				
-					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
-				</section>
 				
 			</div>
 		</div>
@@ -179,6 +139,8 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
 			  <h1 class="header-author">Pedro Neer</h1>
 			</hgroup>
 			
+			<p class="header-subtitle">欢迎来的我的技术博客</p>
+			
 			<nav class="header-menu">
 				<ul>
 				
@@ -192,13 +154,9 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github">github</a>
+						<a class="github" target="_blank" href="https://github.com/PedroNeer" title="github">github</a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
-			        
-						<a class="rss" target="_blank" href="#" title="rss">rss</a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+						<a class="mail" target="_blank" href="/pedro.neer@gmail.com" title="mail">mail</a>
 			        
 				</div>
 			</nav>
@@ -272,6 +230,15 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/03/06/dagger2-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Dagger2 (一) 入坑篇
+        
+      </div>
+    </a>
   
   
     <a href="/2016/03/03/roboguice2/" id="article-nav-older" class="article-nav-link-wrap">
@@ -358,7 +325,7 @@ RoboGuice是基于Guice库开发，目的为Android提供一套简单易用的�
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false
+		open_in_new: true
 	}
 </script>
 <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
