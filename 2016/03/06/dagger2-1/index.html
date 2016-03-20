@@ -6,31 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Dagger2 (一) 入坑篇 | Pedro Neer的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为什么是Dagger2官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？
+  <meta name="description" content="为什么是Dagger2为了更好的了解Dagger2，请先阅读RoboGuice篇了解依赖注入。
+官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？
 Dagger2是第一个全部使用自动生成代码的框架。
-框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。
-用开店宝打开http://www.meituan.com?a=123
-打开酒店商家imhotel://
-一.接入Dagger2使用了生成代码的方式，这里需要apt的插">
+框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dagger2 (一) 入坑篇">
 <meta property="og:url" content="http://yoursite.com/2016/03/06/dagger2-1/index.html">
 <meta property="og:site_name" content="Pedro Neer的博客">
-<meta property="og:description" content="为什么是Dagger2官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？
+<meta property="og:description" content="为什么是Dagger2为了更好的了解Dagger2，请先阅读RoboGuice篇了解依赖注入。
+官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？
 Dagger2是第一个全部使用自动生成代码的框架。
-框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。
-用开店宝打开http://www.meituan.com?a=123
-打开酒店商家imhotel://
-一.接入Dagger2使用了生成代码的方式，这里需要apt的插">
-<meta property="og:updated_time" content="2016-03-11T03:16:38.000Z">
+框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。">
+<meta property="og:updated_time" content="2016-03-20T15:39:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dagger2 (一) 入坑篇">
-<meta name="twitter:description" content="为什么是Dagger2官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？
+<meta name="twitter:description" content="为什么是Dagger2为了更好的了解Dagger2，请先阅读RoboGuice篇了解依赖注入。
+官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？
 Dagger2是第一个全部使用自动生成代码的框架。
-框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。
-用开店宝打开http://www.meituan.com?a=123
-打开酒店商家imhotel://
-一.接入Dagger2使用了生成代码的方式，这里需要apt的插">
+框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。">
   
     <link rel="alternative" href="/atom.xml" title="Pedro Neer的博客" type="application/atom+xml">
   
@@ -121,7 +115,7 @@ Dagger2是第一个全部使用自动生成代码的框架。
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/RoboGuice/" style="font-size: 20px;">RoboGuice</a> <a href="/tags/dagger2/" style="font-size: 10px;">dagger2</a>
+						<a href="/tags/RoboGuice/" style="font-size: 10px;">RoboGuice</a> <a href="/tags/dagger2/" style="font-size: 10px;">dagger2</a>
 					</div>
 				</section>
 				
@@ -222,18 +216,41 @@ Dagger2是第一个全部使用自动生成代码的框架。
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="为什么是Dagger2"><a href="#为什么是Dagger2" class="headerlink" title="为什么是Dagger2"></a>为什么是Dagger2</h3><p>官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？</p>
+        <h3 id="为什么是Dagger2"><a href="#为什么是Dagger2" class="headerlink" title="为什么是Dagger2"></a>为什么是Dagger2</h3><p>为了更好的了解Dagger2，请先阅读<a href="http://pedroneer.github.io/2016/03/02/roboguice1/" target="_blank" rel="external">RoboGuice</a>篇了解依赖注入。</p>
+<p>官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？</p>
 <p>Dagger2是第一个全部使用自动生成代码的框架。</p>
 <p>框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。</p>
-<p>用开店宝打开<a href="bizmeituan://e.meituan.com/webview?url=http%3a%2f%2fwww.meitun.com%3fa%3d123" target="_blank" rel="external">http://www.meituan.com?a=123</a></p>
-<p>打开酒店商家<a href="imhotel://" target="_blank" rel="external">imhotel://</a></p>
+<a id="more"></a>
 <h4 id="一-接入"><a href="#一-接入" class="headerlink" title="一.接入"></a>一.接入</h4><p>Dagger2使用了生成代码的方式，这里需要apt的插件。</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath <span class="string">'com.android.tools.build:gradle:2.0.0-beta6'</span></span><br><span class="line">        classpath <span class="string">'com.neenbedankt.gradle.plugins:android-apt:1.8'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>而Dagger2的主要包中，方法则特别少，主要是编译时提供。</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile <span class="string">'com.google.dagger:dagger:2.0.2'</span></span><br><span class="line">    provided <span class="string">'com.google.dagger:dagger-compiler:2.0.2'</span></span><br><span class="line">    provided <span class="string">'org.glassfish:javax.annotation:10.0-b28'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由此，接入框架便成功了。</p>
-<h4 id="二-视图注入"><a href="#二-视图注入" class="headerlink" title="二.视图注入"></a>二.视图注入</h4><p>相对于RoboGuice来讲，Dagger2是不支持视图注入的，所以如果选用Dagger2进行对象注入框架的话，可以考虑Dagger2+ButterKnife的配合使用。</p>
-
+<h4 id="二-视图注入"><a href="#二-视图注入" class="headerlink" title="二.视图注入"></a>二.视图注入</h4><p>相对于RoboGuice来讲，Dagger2是不支持视图注入的，所以如果选用Dagger2进行对象注入框架的话，可以考虑Dagger2+ButterKnife的配合使用，Dagger2和ButterKnife都没有使用反射机制并且专注于对象或视图的注入。</p>
+<h4 id="三-对象注入"><a href="#三-对象注入" class="headerlink" title="三.对象注入"></a>三.对象注入</h4><p>Dagger2的对象注入同RoboGuice略有不同，但也是和其他注入框架类似，还是使用之前的例子，下面是一个用来储存用户信息的model。注意Dagger2不会默认使用默认构造方法创建以来，必须手动指定。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String userId;</span><br><span class="line">    <span class="keyword">private</span> String token;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    UserInfo()&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(String userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getToken</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setToken</span><span class="params">(String token)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.token = token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLogin</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !TextUtils.isEmpty(token);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我直接使用Inject这个UserInfo的对象的时候，框架会为我们默认使用构造方法进行初始化。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    UserInfo userInfo;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        userInfo.setToken(<span class="string">"testToken"</span>);</span><br><span class="line">        userInfo.setUserId(<span class="string">"123456"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="四-Module与Component"><a href="#四-Module与Component" class="headerlink" title="四.Module与Component"></a>四.Module与Component</h4><p>Dagger2相比于RoboGuice更为灵活，其中Module的定义与RoboGuice相同，主要指提供依赖的模块，而Component则是一个新出现的词。</p>
+<p>Component英文原意为组件，但在这里面就是一个注入器，相当于RoboGuice中的RoboInject，是提供依赖及使用依赖之间的桥梁，而Dagger2更为灵活的是，我们可以自定义这个注入器。</p>
+<p>废话不多说，上代码。</p>
+<p>首先我们定义一个Module，与RoboGuice不同的是，我们只需要加入注解即可，不需要继承自Dagger2的Module类。</p>
+<p>这里我们提供了Application和Context的依赖。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Application application;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ApplicationModule</span><span class="params">(Application application)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.application = application;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Singleton</span></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Application <span class="title">application</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> application;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Singleton</span></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Context <span class="title">context</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> application;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来定义另一个Module，GsonModule。</p>
+<p>还是熟悉的标有需要serializeNulls的Gson对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GsonModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Gson <span class="title">provideGson</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> GsonBuilder().</span><br><span class="line">                serializeNulls().</span><br><span class="line">                create();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来我们定义一个注入器，ApplicationComponent。</p>
+<p>定义方法也很简单，注解标有Component，并且可以指定注入器可以注入的模块。</p>
+<p>其中inject方法稍后讲解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(modules = &#123;ApplicationModule.class, GsonModule.class&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ApplicationComponent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inject</span><span class="params">(MainActivity activity)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好了，写到这，可以放心大胆的编译一下项目了，这时Dagger2会自动生成一些代码，生成的代码是Component前加上Dagger的类，上面的例子生成的就是DaggerApplicationComponent。</p>
+<p>如何使用注入呢？我们用以下方法初始化这个注入器ApplicationComponent。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DaggerApplication</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ApplicationComponent component;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate();</span><br><span class="line">        component = DaggerApplicationComponent.builder().</span><br><span class="line">                applicationModule(<span class="keyword">new</span> ApplicationModule(<span class="keyword">this</span>)).</span><br><span class="line">                gsonModule(<span class="keyword">new</span> GsonModule()).</span><br><span class="line">                build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ApplicationComponent <span class="title">Component</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> component;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里只相当于注入器的初始化，并没有真正的注入对象，下面我们在MainActivity中注入对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    Context context;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        component().inject(<span class="keyword">this</span>);</span><br><span class="line">        Log.e(TAG, <span class="string">"onCreate: "</span> + context.getPackageName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApplicationComponent <span class="title">component</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> DaggerApplication.Component();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行一下，可以看到打印出了日志，至此，我们第一个较为复杂的注入就完成了。这里注入的其实是Application的Context，并不是Activity的Context，为什么呢，以为我们在Application的Module中定义了Context的Provider。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">03-20 22:51:25.046 32476-32476/github.pedroneer.dagger2 E/MainActivity: onCreate: github.pedroneer.dagger2</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -241,6 +258,15 @@ Dagger2是第一个全部使用自动生成代码的框架。
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/03/20/dagger2-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Dagger2 (而) 进阶篇
+        
+      </div>
+    </a>
   
   
     <a href="/2016/03/04/roboguice3/" id="article-nav-older" class="article-nav-link-wrap">

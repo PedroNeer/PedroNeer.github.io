@@ -105,7 +105,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/RoboGuice/" style="font-size: 20px;">RoboGuice</a> <a href="/tags/dagger2/" style="font-size: 10px;">dagger2</a>
+						<a href="/tags/RoboGuice/" style="font-size: 10px;">RoboGuice</a> <a href="/tags/dagger2/" style="font-size: 10px;">dagger2</a>
 					</div>
 				</section>
 				
@@ -171,6 +171,126 @@
 
       <div class="body-wrap">
   
+    <article id="post-dagger2-3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/21/dagger2-3/" class="article-date">
+  	<time datetime="2016-03-20T16:59:04.000Z" itemprop="datePublished">2016-03-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/21/dagger2-3/">Dagger2 (三) 总结篇</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一-Dagger2注入原理"><a href="#一-Dagger2注入原理" class="headerlink" title="一.Dagger2注入原理"></a>一.Dagger2注入原理</h4><p>Dagger2以自动生成代码的形式，帮助我们构建依赖图，在使用依赖的时候方便清晰，这里说明一点，在我们使用Dagger2的时候，绝大多数错误都是编译器就会暴漏出来，这也就决定了这套框架的稳定性会更高。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dagger2/">dagger2</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/21/dagger2-3/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-dagger2-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/20/dagger2-2/" class="article-date">
+  	<time datetime="2016-03-20T15:39:29.000Z" itemprop="datePublished">2016-03-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/20/dagger2-2/">Dagger2 (而) 进阶篇</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一-作用域Scope"><a href="#一-作用域Scope" class="headerlink" title="一.作用域Scope"></a>一.作用域Scope</h4><p>之前了解RoboGuice的时候，我们知道它默认给我们提供了几个注解，ContextSingleton和Singleton，但是Dagger2更为灵活，只有javax包中提供的Singleton注解。更为强大的是，我们可以自定义作用域。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dagger2/">dagger2</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/20/dagger2-2/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-dagger2-1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -197,18 +317,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="为什么是Dagger2"><a href="#为什么是Dagger2" class="headerlink" title="为什么是Dagger2"></a>为什么是Dagger2</h3><p>官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？</p>
+        <h3 id="为什么是Dagger2"><a href="#为什么是Dagger2" class="headerlink" title="为什么是Dagger2"></a>为什么是Dagger2</h3><p>为了更好的了解Dagger2，请先阅读<a href="http://pedroneer.github.io/2016/03/02/roboguice1/">RoboGuice</a>篇了解依赖注入。</p>
+<p>官方文档称，依赖注入这种技术已经在存在多年了，为什么Dagger2要造轮子？</p>
 <p>Dagger2是第一个全部使用自动生成代码的框架。</p>
 <p>框架生成的代码就像我们自己手写的，可以轻易进行调试和测试，并且很容易了解其原理。</p>
-<p>用开店宝打开<a href="bizmeituan://e.meituan.com/webview?url=http%3a%2f%2fwww.meitun.com%3fa%3d123" target="_blank" rel="external">http://www.meituan.com?a=123</a></p>
-<p>打开酒店商家<a href="imhotel://" target="_blank" rel="external">imhotel://</a></p>
-<h4 id="一-接入"><a href="#一-接入" class="headerlink" title="一.接入"></a>一.接入</h4><p>Dagger2使用了生成代码的方式，这里需要apt的插件。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath <span class="string">'com.android.tools.build:gradle:2.0.0-beta6'</span></span><br><span class="line">        classpath <span class="string">'com.neenbedankt.gradle.plugins:android-apt:1.8'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>而Dagger2的主要包中，方法则特别少，主要是编译时提供。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    compile <span class="string">'com.google.dagger:dagger:2.0.2'</span></span><br><span class="line">    provided <span class="string">'com.google.dagger:dagger-compiler:2.0.2'</span></span><br><span class="line">    provided <span class="string">'org.glassfish:javax.annotation:10.0-b28'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由此，接入框架便成功了。</p>
-<h4 id="二-视图注入"><a href="#二-视图注入" class="headerlink" title="二.视图注入"></a>二.视图注入</h4><p>相对于RoboGuice来讲，Dagger2是不支持视图注入的，所以如果选用Dagger2进行对象注入框架的话，可以考虑Dagger2+ButterKnife的配合使用。</p>
-
       
     </div>
     
@@ -221,6 +333,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/06/dagger2-1/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

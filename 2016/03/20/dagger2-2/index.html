@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Dagger2 (而) 进阶篇 | Pedro Neer的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一.作用域Scope之前了解RoboGuice的时候，我们知道它默认给我们提供了几个注解，ContextSingleton和Singleton，但是Dagger2更为灵活，只有javax包中提供的Singleton注解。更为强大的是，我们可以自定义作用域。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dagger2 (而) 进阶篇">
+<meta property="og:url" content="http://yoursite.com/2016/03/20/dagger2-2/index.html">
+<meta property="og:site_name" content="Pedro Neer的博客">
+<meta property="og:description" content="一.作用域Scope之前了解RoboGuice的时候，我们知道它默认给我们提供了几个注解，ContextSingleton和Singleton，但是Dagger2更为灵活，只有javax包中提供的Singleton注解。更为强大的是，我们可以自定义作用域。">
+<meta property="og:updated_time" content="2016-03-20T17:35:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dagger2 (而) 进阶篇">
+<meta name="twitter:description" content="一.作用域Scope之前了解RoboGuice的时候，我们知道它默认给我们提供了几个注解，ContextSingleton和Singleton，但是Dagger2更为灵活，只有javax包中提供的Singleton注解。更为强大的是，我们可以自定义作用域。">
+  
+    <link rel="alternative" href="/atom.xml" title="Pedro Neer的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://p1.meituan.net/ead/8b594f4874c6151e2f867ea1c3024b19113247.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Pedro Neer</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">欢迎来的我的技术博客</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/PedroNeer" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/pedro.neer@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/RoboGuice/" style="font-size: 10px;">RoboGuice</a> <a href="/tags/dagger2/" style="font-size: 10px;">dagger2</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://kennethfan.github.io/">夜未央的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Pedro Neer</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="http://p1.meituan.net/ead/8b594f4874c6151e2f867ea1c3024b19113247.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Pedro Neer</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">欢迎来的我的技术博客</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/PedroNeer" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/pedro.neer@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-dagger2-2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/20/dagger2-2/" class="article-date">
+  	<time datetime="2016-03-20T15:39:29.000Z" itemprop="datePublished">2016-03-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dagger2 (而) 进阶篇
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dagger2/">dagger2</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一-作用域Scope"><a href="#一-作用域Scope" class="headerlink" title="一.作用域Scope"></a>一.作用域Scope</h4><p>之前了解RoboGuice的时候，我们知道它默认给我们提供了几个注解，ContextSingleton和Singleton，但是Dagger2更为灵活，只有javax包中提供的Singleton注解。更为强大的是，我们可以自定义作用域。</p>
+<a id="more"></a>
+<p>首先我们定义一个运行时的注解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Scope</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> PerActivity &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们新增加一个Module，专门为Activity中提供依赖。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivityUtilModule</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Activity activity;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ActivityUtilModule</span><span class="params">(Activity activity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.activity = activity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Resources <span class="title">provideResource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> activity.getResources();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="meta">@PerActivity</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Toaster <span class="title">provideToaster</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Toaster(activity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后我们新增一个Component来承载这个Module，注意，这里我用了dependencies，这样Component就可以传递依赖到子Component。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PerActivity</span></span><br><span class="line"><span class="meta">@Component</span>(dependencies = ApplicationComponent.class, modules = ActivityUtilModule.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ActivityComponent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inject</span><span class="params">(MainActivity activity)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们修改ApplicationComponent，让其不再直接注入到Activity中，而使用ActivityComponent来注入。</p>
+<p>在MainActivity中我们这样写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"MainActivity"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    Toaster toaster;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"app"</span>)</span><br><span class="line">    Context context;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        ActivityComponent activityComponent = DaggerActivityComponent.</span><br><span class="line">                builder().</span><br><span class="line">                activityUtilModule(<span class="keyword">new</span> ActivityUtilModule(<span class="keyword">this</span>)).</span><br><span class="line">                applicationComponent(component()).</span><br><span class="line">                build();</span><br><span class="line">        activityComponent.inject(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">        toaster.longToast(context.getPackageName());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> ApplicationComponent <span class="title">component</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ((DaggerApplication) getApplication()).Component();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行成功后，会弹出包名。相信到这里，大家还是一头雾水。</p>
+<p>当我们去掉ActivityComponent中的PerActivity注解时，我们就会发现，编译出错了：这里告诉我们没依赖这个注解，就使用了这个模块，这是编译时期就会不通过的。这里也暴露了作用域的作用，约束一个模块的注入器组件。且在这个组件中使用这个Module时，提供的这个Provider是单例。即组件模块内单例。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error:(10, 1) 错误: github.pedroneer.dagger2.dagger.ActivityComponent (unscoped) may not reference scoped bindings:</span><br><span class="line">@Provides @github.pedroneer.dagger2.dagger.PerActivity github.pedroneer.dagger2.Toaster github.pedroneer.dagger2.dagger.ActivityUtilModule.provideToaster()</span><br></pre></td></tr></table></figure>
+<p>好，也许到这里还是不懂，先看下这个例子。</p>
+<p>我们将BaseActivity中注入了依赖。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseActivity</span> <span class="keyword">extends</span> <span class="title">FragmentActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    Toaster toaster;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"app"</span>)</span><br><span class="line">    Context context;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        ActivityComponent activityComponent = DaggerActivityComponent.</span><br><span class="line">                builder().</span><br><span class="line">                activityUtilModule(<span class="keyword">new</span> ActivityUtilModule(<span class="keyword">this</span>)).</span><br><span class="line">                applicationComponent(component()).</span><br><span class="line">                build();</span><br><span class="line">        activityComponent.inject(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">        toaster.longToast(context.getPackageName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApplicationComponent <span class="title">component</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ((DaggerApplication) getApplication()).Component();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，我们MainActivity和SecondActivity都继承自BaseActivity，这也符合我们平时的做法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"toaster"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        toaster.longToast(context.getPackageName());</span><br><span class="line">        Log.d(TAG, <span class="string">"onCreate: "</span> + toaster.hashCode());</span><br><span class="line">        Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, SecondActivity.class);</span><br><span class="line">        startActivity(intent);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class SecondActivity extends BaseActivity &#123;</span><br><span class="line">    private static final String TAG = &quot;toaster&quot;;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        toaster.longToast(context.getPackageName());</span><br><span class="line">        Log.d(TAG, &quot;onCreate: &quot; + toaster.hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那接下来我们打印的两个hashCode会是同一个么？</p>
+<p>当然不是。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">03</span>-<span class="number">21</span> <span class="number">00</span>:<span class="number">32</span>:<span class="number">57.706</span> <span class="number">12716</span>-<span class="number">12716</span>/github.pedroneer.dagger2 D/toaster: onCreate: <span class="number">531688530</span></span><br><span class="line"><span class="number">03</span>-<span class="number">21</span> <span class="number">00</span>:<span class="number">32</span>:<span class="number">57.866</span> <span class="number">12716</span>-<span class="number">12716</span>/github.pedroneer.dagger2 D/toaster: onCreate: <span class="number">204017154</span></span><br></pre></td></tr></table></figure>
+<p>因为我们在BaseActivity中就指定了每次创建时都会创建一个新的ActivityComponent，但ActivityComponent中依赖的ApplicationComponent确是一个，因为我们每次都是从DaggerApplication中拿这个对象注入的。</p>
+<p>也就是说，注解了PerActivity的对象，只在一个模块的组件生命周期内单例。</p>
+<p>再看下面的例子：</p>
+<p>我们提供custom和the两种toaster。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivityUtilModule</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Activity activity;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ActivityUtilModule</span><span class="params">(Activity activity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.activity = activity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Resources <span class="title">provideResource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> activity.getResources();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="meta">@PerActivity</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"custom"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Toaster <span class="title">provideToaster</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Toaster(activity);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"the"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Toaster <span class="title">provideTheToaster</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Toaster(activity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>并在ActivityComponent中提供依赖。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PerActivity</span></span><br><span class="line"><span class="meta">@Component</span>(dependencies = ApplicationComponent.class, modules = ActivityUtilModule.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ActivityComponent</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">inject</span><span class="params">(BaseActivity activity)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"custom"</span>)</span><br><span class="line">    <span class="function">Toaster <span class="title">theToaster</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"the"</span>)</span><br><span class="line">    <span class="function">Toaster <span class="title">toaster</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后我们在MainActivity中查看下多次获取这个两个依赖的情况。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"toaster"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        Log.d(TAG, <span class="string">"onCreate: "</span> + activityComponent.theToaster().hashCode());</span><br><span class="line">        Log.d(TAG, <span class="string">"onCreate: "</span> + activityComponent.theToaster().hashCode());</span><br><span class="line">        Log.d(TAG, <span class="string">"onCreate: "</span> + activityComponent.toaster().hashCode());</span><br><span class="line">        Log.d(TAG, <span class="string">"onCreate: "</span> + activityComponent.toaster().hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">03</span>-<span class="number">21</span> <span class="number">00</span>:<span class="number">46</span>:<span class="number">34.836</span> <span class="number">24014</span>-<span class="number">24014</span>/github.pedroneer.dagger2 D/toaster: onCreate: <span class="number">1028556617</span></span><br><span class="line"><span class="number">03</span>-<span class="number">21</span> <span class="number">00</span>:<span class="number">46</span>:<span class="number">34.836</span> <span class="number">24014</span>-<span class="number">24014</span>/github.pedroneer.dagger2 D/toaster: onCreate: <span class="number">1028556617</span></span><br><span class="line"><span class="number">03</span>-<span class="number">21</span> <span class="number">00</span>:<span class="number">46</span>:<span class="number">34.836</span> <span class="number">24014</span>-<span class="number">24014</span>/github.pedroneer.dagger2 D/toaster: onCreate: <span class="number">857606222</span></span><br><span class="line"><span class="number">03</span>-<span class="number">21</span> <span class="number">00</span>:<span class="number">46</span>:<span class="number">34.836</span> <span class="number">24014</span>-<span class="number">24014</span>/github.pedroneer.dagger2 D/toaster: onCreate: <span class="number">614825327</span></span><br></pre></td></tr></table></figure>
+<p>答案很明显，我们定义了PerActivity中的custom修饰的Toaster每次都是唯一的，而the修饰的则每次创建一个对象。这就是作用域及无作用域的区别。</p>
+<p>总结一下，当我们为一个组件打上标签作用域，那么这个组件的生命周期内，模块内的依赖也就随着组件的生命周期消亡而消亡，如果模块内存在提供作用域的Provider，而使用这个模块的组件不标注该作用域，则编译报错。Provider中提供的方法在同一模块内每次调用都会初始化，而标明了作用域的则不会。</p>
+<h4 id="二-绑定类型"><a href="#二-绑定类型" class="headerlink" title="二.绑定类型"></a>二.绑定类型</h4><p>这个上面的例子已经用过了，使用方法和RoboGuice相同，Dagger2也增加了Qualifier的概念，即可以自定义注解标示组件提供需要的注入类型。这里不做赘述。</p>
+<h4 id="三-懒加载"><a href="#三-懒加载" class="headerlink" title="三.懒加载"></a>三.懒加载</h4><p>Dagger2支持Lazy Load，即在我们真正使用对象的时候才回去初始化。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">BaseActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="meta">@Named</span>(<span class="string">"the"</span>)</span><br><span class="line">    Lazy&lt;Toaster&gt; toasterLazy;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        <span class="keyword">if</span> (something()) &#123;</span><br><span class="line">            toasterLazy.get().longToast(<span class="string">"hello"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">something</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Random().nextBoolean();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样大大的提高了我们的效率，比如在BaseActivity中注入了多种依赖，如果不希望创建的时候即初始化，可以使用懒加载，只有在使用的时候初始化。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/21/dagger2-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Dagger2 (三) 总结篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/06/dagger2-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Dagger2 (一) 入坑篇</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="dagger2-2" data-title="Dagger2 (而) 进阶篇" data-url="http://yoursite.com/2016/03/20/dagger2-2/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Pedro Neer
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
