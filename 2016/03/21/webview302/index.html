@@ -6,28 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Android WebView 302斗争之旅 | Pedro Neer的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一.背景越来越多的业务接入，项目内多多少少会出现几个H5页面，只是单纯的提供WebView容器接入H5页面根本满足不了需求，他们需要登录态，需要制定协议控制Native的导航栏，或者需要JsBridge做一些更复杂的操作，这篇主要讲登录态出现的问题。
-二.涉及的知识Android WebView加载url的时候，我们是这样做监听的：
-
-页面加载前会回调onPageStarted
-页面加载完成会回调">
+  <meta name="description" content="一.背景越来越多的业务接入，项目内多多少少会出现几个H5页面，只是单纯的提供WebView容器接入H5页面根本满足不了需求，他们需要登录态，需要制定协议控制Native的导航栏，或者需要JsBridge做一些更复杂的操作，这篇主要讲登录态出现的问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android WebView 302斗争之旅">
 <meta property="og:url" content="http://yoursite.com/2016/03/21/webview302/index.html">
 <meta property="og:site_name" content="Pedro Neer的博客">
-<meta property="og:description" content="一.背景越来越多的业务接入，项目内多多少少会出现几个H5页面，只是单纯的提供WebView容器接入H5页面根本满足不了需求，他们需要登录态，需要制定协议控制Native的导航栏，或者需要JsBridge做一些更复杂的操作，这篇主要讲登录态出现的问题。
-二.涉及的知识Android WebView加载url的时候，我们是这样做监听的：
-
-页面加载前会回调onPageStarted
-页面加载完成会回调">
-<meta property="og:updated_time" content="2016-03-21T11:38:31.000Z">
+<meta property="og:description" content="一.背景越来越多的业务接入，项目内多多少少会出现几个H5页面，只是单纯的提供WebView容器接入H5页面根本满足不了需求，他们需要登录态，需要制定协议控制Native的导航栏，或者需要JsBridge做一些更复杂的操作，这篇主要讲登录态出现的问题。">
+<meta property="og:updated_time" content="2016-03-21T11:45:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android WebView 302斗争之旅">
-<meta name="twitter:description" content="一.背景越来越多的业务接入，项目内多多少少会出现几个H5页面，只是单纯的提供WebView容器接入H5页面根本满足不了需求，他们需要登录态，需要制定协议控制Native的导航栏，或者需要JsBridge做一些更复杂的操作，这篇主要讲登录态出现的问题。
-二.涉及的知识Android WebView加载url的时候，我们是这样做监听的：
-
-页面加载前会回调onPageStarted
-页面加载完成会回调">
+<meta name="twitter:description" content="一.背景越来越多的业务接入，项目内多多少少会出现几个H5页面，只是单纯的提供WebView容器接入H5页面根本满足不了需求，他们需要登录态，需要制定协议控制Native的导航栏，或者需要JsBridge做一些更复杂的操作，这篇主要讲登录态出现的问题。">
   
     <link rel="alternative" href="/atom.xml" title="Pedro Neer的博客" type="application/atom+xml">
   
@@ -220,6 +208,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="一-背景"><a href="#一-背景" class="headerlink" title="一.背景"></a>一.背景</h3><p>越来越多的业务接入，项目内多多少少会出现几个H5页面，只是单纯的提供WebView容器接入H5页面根本满足不了需求，他们需要登录态，需要制定协议控制Native的导航栏，或者需要JsBridge做一些更复杂的操作，这篇主要讲登录态出现的问题。</p>
+<a id="more"></a>
 <h3 id="二-涉及的知识"><a href="#二-涉及的知识" class="headerlink" title="二.涉及的知识"></a>二.涉及的知识</h3><p>Android WebView加载url的时候，我们是这样做监听的：</p>
 <ul>
 <li>页面加载前会回调onPageStarted</li>
